@@ -1,0 +1,7 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/c/Development'
+let g:netrw_dirhist_2='/c/Development/Components'
+let g:netrw_dirhist_3='/c/Development/Components/AIControlPoint.Logs.BP'
+let g:netrw_dirhist_4='/c/Development/Components/AIControlPoint.Logs.BP/trunk'
+let g:netrw_dirhist_5='/c/Development/Components/AIControlPoint.Logs.BP/trunk/DailyLog'
