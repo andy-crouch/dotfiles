@@ -3,8 +3,6 @@
 "// vimrc - Vim configuration file.
 "// ================================
 "//
-"// Owner	:: Andy Crouch (andy.amcrouch@gmail.com)
-"//
 "// Version	:: 1.1
 "//
 "// About
