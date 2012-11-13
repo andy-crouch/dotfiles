@@ -2,8 +2,6 @@
 # .bashrc file.
 # -------------
 #
-# Andy Crouch (andy.amcrouch@gmail.com)
-#
 # Date Last Modified : 28/08/2012
 #
 # My regular .bashrc containing various functions, alias's and 
