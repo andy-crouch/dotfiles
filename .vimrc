@@ -76,8 +76,10 @@
 "// General settings ...
 "///////////////////////////////////////////////////////////////////////////////
 
-let mapleader=","				" remap the leader key to ,
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+call pathogen#infect()
 
+let mapleader=","				" remap the leader key to ,
 set nocompatible 				" turn off vi compatibility
 set autoindent 					" set on autoindent 
 set smartindent 				" set on smart indent
