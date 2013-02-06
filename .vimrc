@@ -187,8 +187,8 @@ elseif MySys() == "windows"
 	"set gfn=ProggyCleanTT:h12:cDEFAULT
 	set gfn=Meslo\ LG\ S\ DZ:h9:cDEFAULT
 elseif MySys() == "linux"
-	set gfn=Lucida\ Console\ 8
-	"set gfn=Meslo\ LG\ S\ DZ\ 8
+	"set gfn=Lucida\ Console\ 8
+	set gfn=Meslo\ LG\ S\ DZ\ 8
 	set shell=/bin/bash
 endif
 
@@ -230,6 +230,7 @@ map <F3> <Esc>:setlocal spell! spelllang=en_gb<CR>
 "CtrlP key mappings (map command to open in pwd) ...
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP ..'
+nnoremap <leader>b :CtrlPBuffer<CR>
 
 " In windows provide standard windows shortcut to the System menu
 if MySys() == "windows"
