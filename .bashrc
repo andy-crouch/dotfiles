@@ -15,6 +15,9 @@
 #
 ###############################################################################
 
+# get our parent directory ...
+DOTFILES="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 # EXPORTS
 ###############################################################################
 
@@ -96,80 +99,16 @@ echo -e "\n"
 
 # ALIAS's
 ###############################################################################
-# Read the ~/.bash_aliases file on the machine to load local aliases ...
-if [ -f ~/.bash_aliases ]; then
- . ~/.bash_aliases
+if [ -f $DOTFILES/bash/.bash_aliases ]; then
+	. $DOTFILES/bash/.bash_aliases 
+else
+	echo -e "Warning - Unable to source .bash_aliases \n\n"
 fi
-
-alias ll="ls -lFh --color=auto"
-alias lla="ls -Al | less"
 
 # FUNCTION DEFINITIONS
 ###############################################################################
-# Inflate the file passed in $1 ...
-function Expand() 
-{
-	if [ -f $1 ] ; then
-		case $1 in
-			*.tar.bz2)		tar xjf $1                ;;
-			*.tar.gz)       tar xzf $1                ;;
-			*.bz2)          bunzip2 $1                ;;
-			*.rar)          rar x $1                ;;
-			*.gz)           gunzip $1                ;;
-			*.tar)          tar xf $1                ;;
-			*.tbz2)         tar xjf $1                ;;
-			*.tgz)          tar xzf $1                ;;
-			*.zip)          unzip $1                ;;
-			*.Z)            uncompress $1        ;;
-			*)              echo "'$1' cannot be extracted via Expand()" ;;
-		esac
-	else
-		echo "'$1' is not a valid file"
-	fi
-}
-
-# Get IP related information ...
-
-# Show systemm network and various use related pieces of information ...
-function ShowSystemInfo()   
-{
-	IPAdd=`ifconfig  | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1}'`
-	EXTAdd=`wget -O - whatismyip.com 2> /dev/null | grep "Your IP Address Is" | sed -e 's/^.*Is//' -e 's/<.*$//'`
-
-    echo -e "\nYou are logged on ${RED}$HOST"
-    echo -e "\nAdditionnal information:$NC " ; uname -a
-    echo -e "\n${RED}Users logged on:$NC " ; w -h
-    echo -e "\n${RED}Current date :$NC " ; date
-    echo -e "\n${RED}Machine stats :$NC " ; uptime
-    echo -e "\n${RED}Memory stats :$NC " ; free
-
-    echo -e "\n${RED}Local IP Address :$NC" ; echo ${IPAdd:-"Not connected"}
-    echo -e "\n${RED}ISP Address :$NC" ; echo ${ExtAdd:-"Not connected"}
-    echo -e "\n${RED}Open connections :$NC "; netstat -pan --inet;
-    echo
-}
-
-function open()
-{
-	UNAME=`uname`
-	OSLINUX="Linux"
-	OSCYGWIN="CYGWIN_NT-6.1-WOW64"
-	
-	if [ "$UNAME" = "$OSLINUX" ]; then
-		if [ "$1" = "" ]; then
-			echo "open Failed, No file specified to open."
-		else
-			xdg-open "$1"
-		fi
-	elif [ "$UNAME" = "$OSCYGWIN" ]; then
-		if [ "$1" = "" ]; then
-			NATIVE_PATH="."
-		else
-			NATIVE_PATH="$1"
-		fi
-
-		WIN_PATH=`cygpath -w -a "${NATIVE_PATH}"`
-		cmd /C start "" "$WIN_PATH"
-	fi
-}
-
+if [ -f $DOTFILES/bash/.bash_functions ]; then
+	. $DOTFILES/bash/.bash_functions 
+else
+	echo -e "Warning - Unable to source .bash_functions.\n\n"
+fi
