@@ -105,6 +105,15 @@ else
 	echo -e "Warning - Unable to source .bash_aliases \n\n"
 fi
 
+ALIASE_FILES=$DOTFILES/bash/.bash_aliases_*
+MACHINE_ALIASES="${DOTFILES}/bash/.bash_aliases_${HOSTNAME}"
+for f in $ALIASE_FILES
+do
+	if [ "$f" = "$MACHINE_ALIASES" ]; then
+		. $MACHINE_ALIASES
+	fi
+done
+
 # FUNCTION DEFINITIONS
 ###############################################################################
 if [ -f $DOTFILES/bash/.bash_functions ]; then
