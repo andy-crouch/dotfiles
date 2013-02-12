@@ -1,0 +1,4 @@
+
+alias cptrunk='cd /ControlPoint/trunk/'
+alias cpsrc='cd /ControlPoint/trunk/src/'
+
