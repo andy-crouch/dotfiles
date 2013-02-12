@@ -204,7 +204,10 @@ else
 	if MySys() == "cygwin"
 		" Cygwin apparently only supports 8 (!) colours, back to a default 
 		" for now ...
-		colorscheme desert 
+		"colorscheme desert 
+		"set t_Co=256
+		let g:jellybeans_use_lowcolor_black = 0
+		colorscheme jellybeans
 	else
 		set t_Co=256
 		let g:jellybeans_use_lowcolor_black = 0
