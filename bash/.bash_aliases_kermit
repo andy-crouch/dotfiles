@@ -1,4 +1,12 @@
-
 alias cptrunk='cd /ControlPoint/trunk/'
 alias cpsrc='cd /ControlPoint/trunk/src/'
-
+alias cpsql='cd /ControlPoint/trunk/sql-scripts/'
+alias cpbuild='cd /ControlPoint/trunk/build'
+alias cplib='cd /ControlPoint/trunk/lib/'
+alias cpreports='cd /ControlPoint/trunk/reports/'
+alias cpsrc-documentation='cd /ControlPoint/trunk/src-documentation/'
+alias cptests='cd /ControlPoint/trunk/tests/'
+alias andy='cd /andy/'
+alias mydocs='cd /MyDocuments/'
+alias cpdocs='cd /MyDocuments/ControlPoint/'
+alias cpclientdocs='cd /MyDocuments/ControlPoint/Clients'
