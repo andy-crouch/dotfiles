@@ -1,3 +1,8 @@
+# Utility
+alias list_functions="declare -F | cut -d' ' -f3"
+alias list_aliases="compgen -a"
+alias list_full_aliase_details="alias"
+
 # Corrections
 alias claer='clear;'
 alias exot='exit'
@@ -11,15 +16,7 @@ alias la='ls -A'
 alias ll='ls -alF'
 alias reload='source ~/.bash_profile'
 
-# arch
-alias install='sudo pacman -S $1'
-alias remove='sudo pacman -Rs $1'
-alias update='sudo pacman -Syu'
-alias pkg_search='sudo pacman -Ss $1 $2'
-alias pkg_info='sudo pacman -Si $1'
-alias pkg_dependants='sudo pactree $1'
-
-# git
+# Git
 alias gs='git status '
 alias ga='git add '
 alias gb='git branch '
