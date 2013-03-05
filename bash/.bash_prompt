@@ -1,0 +1,24 @@
+# Prompt definition (username@host absolute path $) ...
+PS1='\[\e[0;32m\]\u@\h\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \[\e[1;32m\]\$\[\e[m\] \[\e[0;37m\]'
+
+# Welcome message ...
+PS2='>'
+welcome_msg="${WHITE}Welcome ${RED}${BOLD}$USER${NOBOLD}${WHITE} :: `date`"
+
+# modified to allow the correct command to get the ip address to run based on if we 
+# are in Cygwin (windows) or not.  Default command is ifconfig ...
+[ $HOSTNAME == 'kermit' ] && ip_op=`ipconfig  | grep 'IPv4 Add'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1}'` || ip_op=`ifconfig  | grep 'inet '| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $2}'`
+ip_add=$ip_op
+
+echo -e $welcome_msg
+for ((i=34;i<${#welcome_msg};i++));
+        do
+                echo -n "-"
+        done
+echo -e "\n"
+echo -e "${WHITE}Host    :: ${BLUE}${BOLD}$HOSTNAME${NOBOLD}"
+echo -e "${WHITE}Kernel  :: ${BLUE}${BOLD}`uname -smr`${NOBOLD}"
+echo -e "${WHITE}IP      :: ${BLUE}${BOLD}$ip_add${NOBOLD}${NC}"
+echo -e "\n"
+
+
