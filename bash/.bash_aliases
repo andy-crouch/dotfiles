@@ -11,9 +11,10 @@ alias exot='exit'
 alias create='touch'
 alias find_text='grep -Rin --color'
 alias find_usages='grep -ien --color'
-alias l='ls -CF'
-alias la='ls -A'
-alias ll='ls -alF'
+alias l='ls -CF --color=auto'
+alias la='ls -A --color=auto'
+alias ll='ls -AlF --color=auto'
+alias lsd='ls -l --color | grep "^d"'
 alias reload='source ~/.bash_profile'
 
 # Git
