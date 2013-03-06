@@ -131,6 +131,3 @@ function ShowSystemInfo()
     echo -e "\n${RED}Open connections :$NC "; netstat -pan --inet;
     echo
 }
-
-
-
