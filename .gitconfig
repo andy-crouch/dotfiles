@@ -1,0 +1,16 @@
+[user]
+	name = Andy Crouch
+	email = andy.crouch@aicontrolpoint.com
+[merge]
+	tool = kdiff3
+[mergetool "kdiff3"]
+	;path = /c/Program\ Files\ \(x86\)/KDiff3/kdiff3.exe
+	path = ~/kdiff3
+[diff]
+	guitool = kdiff3
+[difftool "kdiff3"]
+	;path = /c/Program\ Files\ \(x86\)/KDiff3/kdiff3.exe
+	path = ~/kdiff3
+
+[color]
+	ui = true
