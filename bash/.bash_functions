@@ -1,3 +1,11 @@
+function cl () {
+   if [ $# = 0 ]; then
+      cd && ls -la
+   else
+      cd "$*" && ls -la
+   fi
+}
+
 function open()
 {
 	UNAME=`uname`
