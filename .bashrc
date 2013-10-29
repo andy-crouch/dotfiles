@@ -23,7 +23,7 @@ do
 			MFILE="${file}_${HOSTNAME}"
 			if [[ -e "$MFILE" ]]; then
 				. "$MFILE"
-				echo "Processing host file => $MFILE ... "
+				#echo "Processing host file => $MFILE ... "
 			fi
 			unset MFILE
 		else

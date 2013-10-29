@@ -2,6 +2,7 @@
 "// General settings ...
 "///////////////////////////////////////////////////////////////////////////////
 
+set fileformats=unix,dos,mac	" File endings
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 
