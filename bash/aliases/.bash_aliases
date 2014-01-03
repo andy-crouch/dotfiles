@@ -15,7 +15,7 @@ alias ls='ls -CF --color=auto'
 alias la='ls -A --color=auto'
 alias ll='ls -AlF --color=auto'
 alias lsd='ls -l --color | grep "^d"'
-alias reload='source ~/.bash_profile'
+alias reload='clear && source ~/.bash_profile'
 
 # Git
 alias gs='git status '
