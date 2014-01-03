@@ -3,7 +3,7 @@ PS1='\[\e[0;32m\]\u@\h\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \[\e[1;32m\]\$\[\e[m\] \[\
 
 # Welcome message ...
 PS2='>'
-welcome_msg="${WHITE}Welcome ${RED}${BOLD}$USER${NOBOLD}${WHITE} :: `date`"
+welcome_msg="${WHITE}Welcome ${RED}${BOLD}$USER${NOBOLD}${WHITE} :: `date +%A\ %d\ %B\ %Y\ %T`"
 
 # modified to allow the correct command to get the ip address to run based on if we 
 # are in Cygwin (windows) or not.  Default command is ifconfig ...
