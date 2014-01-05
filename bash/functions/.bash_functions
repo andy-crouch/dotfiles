@@ -1,6 +1,6 @@
 function cl () {
    if [ $# = 0 ]; then
-      cd && ls -la
+	  ls -A --color=auto
    else
       cd "$*" && ls -la
    fi
