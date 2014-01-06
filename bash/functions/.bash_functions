@@ -1,8 +1,8 @@
 function cl () {
    if [ $# = 0 ]; then
-	  ls -A --color=auto
+	ls -AlF --color=auto
    else
-      cd "$*" && ls -la
+      cd "$*" && ls -AlF --color=auto
    fi
 }
 
