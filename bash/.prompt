@@ -11,10 +11,12 @@ welcome_msg="${WHITE}Welcome ${RED}${BOLD}$USER${NOBOLD}${WHITE} :: `date +%A\ %
 ip_add=$ip_op
 
 echo -e $welcome_msg
-for ((i=34;i<${#welcome_msg};i++));
-        do
-                echo -n "-"
-        done
+echo -e ${#welcome_msg}
+printf -- '-%.0s' $(seq 1 ${#welcome_msg})
+#for ((i=34;i<${#welcome_msg};i++));
+        #do
+                #echo -n "-"
+        #done
 echo -e "\n"
 echo -e "${WHITE}Host    :: ${BLUE}${BOLD}$HOSTNAME${NOBOLD}"
 echo -e "${WHITE}Kernel  :: ${BLUE}${BOLD}`uname -smr`${NOBOLD}"
