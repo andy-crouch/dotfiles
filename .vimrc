@@ -50,6 +50,10 @@ elseif MySys() == "linux"
 	autocmd! bufwritepost vimrc source ~/Dropbox/Config/VimSettings/vimrc
 endif
 
+
+autocmd InsertEnter * set cul
+autocmd InsertLeave * set nocul
+
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
 
