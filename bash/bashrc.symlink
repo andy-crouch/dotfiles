@@ -1,37 +1,25 @@
 # Check for an interactive session ...
 [ -z "$PS1" ] && return
 
-# Locate the .dotfiles directory.
-DOTFILES=`find ~/ -maxdepth 1 -iname .dotfile* -type d`
-
-# Get path to bash specific settings.
-DF_BASH="${DOTFILES}/bash/"
-
-# Source the files in .dotfiles/bash/.  (Note machine
-# dependant content can be handled by creating files with
-# _HOSTNAME suffix.  To completely override a file create
-# a directory in bash/ named HOSTNAME and add any of the 
-# standard bash/ based files with no suffix).
-BASHFILES=`find ${DF_BASH} -maxdepth 2 -iname '.bash_*' -a ! -iname '*.bash_*_*'`
-for file in $BASHFILES
-do
-	if [[ -d "${DF_BASH}/${HOSTNAME}" ]]; then
-		echo "Processing host overide file => $MFILE ... "
-	else
-		if [[ -r "$file" ]]; then
-			. "$file"
-			MFILE="${file}_${HOSTNAME}"
-			if [[ -e "$MFILE" ]]; then
-				. "$MFILE"
-				#echo "Processing host file => $MFILE ... "
-			fi
-			unset MFILE
-		else
-			echo -e "Warning - Unable to source .bash_functions.\n\n"
-		fi
-	fi
+# Get the parent directory and source the various bash config files ...
+script_source="${BASH_SOURCE[0]}"
+while [ -h "$script_source" ]; do 
+  script_dir="$( cd -P "$( dirname "$script_source" )" && pwd )"
+  script_source="$(readlink "$script_source")"
+  [[ $script_source != /* ]] && script_source="$script_dir/$script_source" 
 done
-unset file
+bash_df_dir="$( cd -P "$( dirname "$script_source" )" && pwd )"
+
+bash_source_files=`find ${bash_df_dir} -maxdepth 2 -iname '.bash_*' -a ! -iname '*.bash_*_*'`
+
+for bash_source_file in $bash_source_files
+do
+	host_override_file="${bash_source_file}_${hostname}"
+	[[ -e "${bash_source_file}" && -r "${bash_source_file}" ]] && . "$bash_source_file"
+	[[ -e "${host_override_file}" && -r "${host_override_file}" ]] && . "$host_override_file"
+	unset host_override_file
+done
+unset bash_source_file
 
 # Enable bash completion.
 [[ -f /etc/bash_completion ]] && . /etc/bash_completion
