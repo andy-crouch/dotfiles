@@ -8,26 +8,26 @@
 # various dotfiles and components in the dotfiles parent
 # directory.
 
-DOTFILES_ROOT="`pwd`"
+dotfiles_root=`find ~/ -mindepth 1 -maxdepth 1 -iname .dotfile* -type d`
 
 set -e
 
 echo ''
 
 info () {
-  printf "  [ \033[00;34m..\033[0m ] $1"
+  printf "    [ \033[00;34m  ..  \033[0m ] $1"
 }
 
 user () {
-  printf "\r  [ \033[0;33m?\033[0m ] $1 "
+  printf "\r    [ \033[0;33m  ?  \033[0m ] $1 "
 }
 
 success () {
-  printf "\r\033[2K  [ \033[00;32mOK\033[0m ] $1\n"
+  printf "\r\033[2K    [ \033[00;32m  OK  \033[0m ] $1\n"
 }
 
 fail () {
-  printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"
+  printf "\r\033[2K    [\033[0;31m  FAIL  \033[0m] $1\n"
   echo ''
   exit
 }
@@ -60,13 +60,13 @@ link_files () {
 }
 
 install_dotfiles () {
-  info 'installing dotfiles'
+  #info 'installing dotfiles'
 
   overwrite_all=false
   backup_all=false
   skip_all=false
 
-  for source in `find $DOTFILES_ROOT -maxdepth 2 -name \*.symlink`
+  for source in `find $dotfiles_root -maxdepth 2 -name \*.symlink`
   do
     dest="$HOME/.`basename \"${source%.*}\"`"
 
@@ -126,8 +126,10 @@ install_dotfiles () {
   done
 }
 
-setup_gitconfig
-install_dotfiles
+echo -e '\n  :: dotfiles installation ::\n'
+
+#setup_gitconfig
+#install_dotfiles
 
 # If we're on a Mac, let's install and setup homebrew.
 #if [ "$(uname -s)" == "Darwin" ]
@@ -141,5 +143,6 @@ install_dotfiles
   #fi
 #fi
 
-echo ''
-echo '  All installed!'
+echo -e '\n'
+echo -e '  All installed!'
+echo -e '\n'
