@@ -1,9 +1,19 @@
 # Prompt definition (username@host absolute path $) ...
-PS1='\[\e[0;32m\]\u@\h\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \[\e[1;32m\]\$\[\e[m\] \[\e[0;37m\]'
+#PS1='\[\e[0;32m\]\u@\h\[\e[m\] \[\e[1;34m\]\w\[\e[m\]\[\e[1;32m\]$(__git_ps1)\$\[\e[m\] \[\e[0;37m\]'
+#PS1='${YELLOW}\h \w\ $(__git_ps1) \$ '
+PS1='[ \[\e[1;33m\]\h\[\e[m\] ] \[\e[1;34m\]\w/\[\e[m\]\[\e[1;31m\]$(__git_ps1)\[\e[m\] \[\e[1;32m\]\$\[\e[m\] '
 
 # Welcome message ...
 PS2='>'
-welcome_msg="${WHITE}Welcome ${RED}${BOLD}$USER${NOBOLD}${WHITE} :: `date +%A\ %d\ %B\ %Y\ %T`"
+
+hour=`date +%k`
+greeting="Good morning"
+[[ $hour -gt 12 ]] && greeting='Good afternoon'
+[[ $hour -gt 18 ]] && greeting='Good evening'
+
+
+#welcome_msg="${WHITE}Welcome ${RED}${BOLD}$USER${NOBOLD}${WHITE} :: `date +%A\ %d\ %B\ %Y\ %T`"
+welcome_msg="${WHITE}$greeting ${RED}${BOLD}$USER${NOBOLD} ${WHITE} \n\nIt is now `date +%R\ on\ %A\ %d\ %B\ %Y\ `"
 
 # modified to allow the correct command to get the ip address to run based on if we 
 # are in Cygwin (windows) or not.  Default command is ifconfig ...
@@ -11,16 +21,16 @@ welcome_msg="${WHITE}Welcome ${RED}${BOLD}$USER${NOBOLD}${WHITE} :: `date +%A\ %
 ip_add=$ip_op
 
 echo -e $welcome_msg
-echo -e ${#welcome_msg}
-printf -- '-%.0s' $(seq 1 ${#welcome_msg})
+#echo -e ${#welcome_msg}
+#printf -- '-%.0s' $(seq 1 ${#welcome_msg})
 #for ((i=34;i<${#welcome_msg};i++));
         #do
                 #echo -n "-"
         #done
 echo -e "\n"
-echo -e "${WHITE}Host    :: ${BLUE}${BOLD}$HOSTNAME${NOBOLD}"
-echo -e "${WHITE}Kernel  :: ${BLUE}${BOLD}`uname -smr`${NOBOLD}"
-echo -e "${WHITE}IP      :: ${BLUE}${BOLD}$ip_add${NOBOLD}${NC}"
+echo -e "  ${WHITE}Host    :: ${BLUE}${BOLD}$HOSTNAME${NOBOLD}"
+echo -e "  ${WHITE}Kernel  :: ${BLUE}${BOLD}`uname -smr`${NOBOLD}"
+echo -e "  ${WHITE}IP      :: ${BLUE}${BOLD}$ip_add${NOBOLD}${NC}"
 echo -e "\n"
 
 
