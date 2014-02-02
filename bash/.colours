@@ -1,3 +1,6 @@
+# The .colours file contains Bash colour & style definitions and is sourced
+# by the bashrc file.
+
 # Style definitions ...
 BOLD='\E[1m'
 NOBOLD='\E[0m'

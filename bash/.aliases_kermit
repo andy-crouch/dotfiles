@@ -1,3 +1,7 @@
+# The .aliases_kermit file is a machine dependant aliases file, sourced by 
+# the bashrc file.
+
+# Code/Project aliases
 alias cptrunk='cd /ControlPoint/trunk/'
 alias cpsrc='cd /ControlPoint/trunk/src/'
 alias cpsql='cd /ControlPoint/trunk/sql-scripts/'

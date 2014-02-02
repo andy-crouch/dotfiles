@@ -1,3 +1,5 @@
+# The .exports file contains export commands and is sourced by the bashrc file.
+
 # set svn editor to be vim ...
 export SVN_EDITOR=vim
 
@@ -6,6 +8,12 @@ if [ -d ~/Dropbox/ShellScripts ]; then
 	PATH=$PATH:~/Dropbox/ShellScripts
 	export PATH
 fi
+
+## Add branch to PS1 (based on $PS1 or $1), formatted as $2
+export GIT_PS1_SHOWDIRTYSTATE=yes
+export GIT_PS1_SHOWSTASHSTATE=yes
+export GIT_PS1_SHOWUNTRACKEDFILES=yes
+export PS1="\$(be_get_branch "$2")${PS1}";
 
 
 
