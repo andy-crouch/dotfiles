@@ -13,7 +13,9 @@ fi
 export GIT_PS1_SHOWDIRTYSTATE=yes
 export GIT_PS1_SHOWSTASHSTATE=yes
 export GIT_PS1_SHOWUNTRACKEDFILES=yes
-export PS1="\$(be_get_branch "$2")${PS1}";
+export GIT_PS1_SHOWCOLORHINTSi=yes
+export GIT_PS1_SHOWUPSTREAM="verbose"
+#export PS1="\$(be_get_branch "$2")${PS1}";
 
 
 
