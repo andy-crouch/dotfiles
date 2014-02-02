@@ -1,4 +1,5 @@
-# The .aliases file contains aliases commands and is sourced by the bashrc file.
+# The .aliases file contains my generic aliases commands and is sourced by the 
+# bashrc file.
 
 # dotfiles utility aliases
 alias df_functions="declare -F | cut -d' ' -f3"

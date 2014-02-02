@@ -1,5 +1,5 @@
-# The .functions file contains function definitions and is sourced by the bashrc 
-# file.
+# The .functions file contains function definitions and is sourced by the 
+# bashrc file.
 
 function cl () {
    if [ $# = 0 ]; then
