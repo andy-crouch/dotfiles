@@ -15,10 +15,21 @@ greeting="Good morning"
 [[ $hour -gt 18 ]] && greeting='Good evening'
 
 # Attempt to generate ip address details and connection type
+# Note - For Cygwin we have to try and parse ipconfig
 net_ip="Unknown"
 net_type="(No connection detected)"
-eth_ip=`ifconfig eth0 | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p'`
-wlan_ip=`ifconfig wlan0 | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p'`
+eth_ip=''
+wlan_ip=''
+if [[ `uname -smr` == CYGWIN* ]] 
+then
+	wineth_conn_state=`ipconfig | awk '/Ethernet adapter Local Area Connection:/, /Media State/' | cut -d: -f2 | awk '/./' | tr -d ' '`
+	[[ $wineth_conn_state != "Mediadisconnected" ]] && eth_ip=`ipconfig | awk '/Ethernet adapter Local Area Connection:/, /Default Gateway/' | grep 'IPv4' | cut -d: -f2 | tr -d ' '`
+	[[ $wineth_conn_state == "Mediadisconnected" ]] && wlan_ip=`ipconfig | awk '/Wireless LAN adapter Wireless Network Connection:/, /Default Gateway/' | grep 'IPv4' | cut -d: -f2 | tr -d ' '`
+else
+	eth_ip=`ifconfig eth0 | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p'`
+	wlan_ip=`ifconfig wlan0 | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p'`
+fi
+
 [[ ${#wlan_ip} -gt 0 ]] && net_type="(Wifi)" && net_ip=$wlan_ip 
 [[ ${#eth_ip} -gt 0 ]] && net_type="(Wired)" && net_ip=$eth_ip
 
