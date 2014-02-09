@@ -1,7 +1,15 @@
 # The .functions file contains function definitions and is sourced by the 
 # bashrc file.
 
-function cl () {
+# mkdir structure specified and then cd into the new directory.
+function mkdircd() 
+{ 
+	mkdir -p "$@" && eval cd "\"\$$#\"";
+}
+
+# If $ is supplied then cd to $ and then ls -A.
+function cl() 
+{
    if [ $# = 0 ]; then
 	ls -AlF --color=auto
    else
@@ -9,6 +17,8 @@ function cl () {
    fi
 }
 
+# Attempt to open the file specified in $1 with it's associated
+# application.
 function open()
 {
 	UNAME=`uname`
@@ -37,7 +47,7 @@ function expand_archive()
 {
 	if [ -f $1 ] ; then
 		case $1 in
-			*.tar.bz2)		tar xjf $1                ;;
+			*.tar.bz2)		tar xjf $1;;
 			*.tar.gz)       tar xzf $1                ;;
 			*.bz2)          bunzip2 $1                ;;
 			*.rar)          rar x $1                ;;

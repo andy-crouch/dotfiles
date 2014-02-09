@@ -9,13 +9,15 @@ if [ -d ~/Dropbox/ShellScripts ]; then
 	export PATH
 fi
 
-## Add branch to PS1 (based on $PS1 or $1), formatted as $2
+# set git_ps1 variables to show git prompt details ...
 export GIT_PS1_SHOWDIRTYSTATE=yes
 export GIT_PS1_SHOWSTASHSTATE=yes
 export GIT_PS1_SHOWUNTRACKEDFILES=yes
 export GIT_PS1_SHOWCOLORHINTSi=yes
 export GIT_PS1_SHOWUPSTREAM="verbose"
-#export PS1="\$(be_get_branch "$2")${PS1}";
+
+# display any error code returned that is not 0 ...
+export PROMPT_COMMAND='ret=$?; if [ $ret -ne 0 ] ; then echo -e "${BLUE}${BOLD}\n[ Warning ] ${GREEN}returned${RED} $ret\n${NC}"; fi'
 
 
 

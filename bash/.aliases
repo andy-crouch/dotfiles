@@ -1,28 +1,28 @@
 # The .aliases file contains my generic aliases commands and is sourced by the 
 # bashrc file.
 
-# dotfiles utility aliases
+# dotfiles utility aliases.
 alias df_functions="declare -F | cut -d' ' -f3"
 alias df_aliases="compgen -a"
 alias df_aliase_details="alias"
 alias df_reload='clear && source ~/.bash_profile'
 
-# Correction aliases
+# Correction aliases.
 alias claer='clear;'
 alias exot='exit'
 
-# File system aliases
+# File system aliases.
 alias ls='ls -CF --color=auto'
 alias la='ls -A --color=auto'
 alias ll='ls -AlF --color=auto'
 alias lsd='ls -l --color | grep "^d"'
-
-# 
 alias create='touch'
+
+# Find aliases.
 alias find_text='grep -Rin --color'
 alias find_usages='grep -ien --color'
 
-# Git aliases
+# Git aliases.
 alias gs='git status '
 alias ga='git add '
 alias gb='git branch '
