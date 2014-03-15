@@ -8,7 +8,7 @@
 # various dotfiles and components in the dotfiles parent
 # directory.
 
-dotfiles_root=`find ~/ -mindepth 1 -maxdepth 1 -iname .dotfile* -type d`
+dotfiles_root=`pwd`
 
 set -e
 
@@ -60,11 +60,7 @@ link_files () {
 }
 
 install_dotfiles () {
-  #info 'installing dotfiles'
-
-  overwrite_all=false
-  backup_all=false
-  skip_all=false
+  backup_time_stamp=`date +%d-%m-%Y:%H%M`
 
   for source in `find $dotfiles_root -maxdepth 2 -name \*.symlink`
   do
@@ -77,42 +73,33 @@ install_dotfiles () {
       backup=false
       skip=false
 
-      if [ "$overwrite_all" == "false" ] && [ "$backup_all" == "false" ] && [ "$skip_all" == "false" ]
-      then
-        user "File already exists: `basename $source`, what do you want to do? [s]kip, [S]kip all, [o]verwrite, [O]verwrite all, [b]ackup, [B]ackup all?"
-        read -n 1 action
+      user "File already exists: $dest, what do you want to do? [s]kip, [o]verwrite, [b]ackup?"
+      read -n 1 action
 
-        case "$action" in
-          o )
-            overwrite=true;;
-          O )
-            overwrite_all=true;;
-          b )
-            backup=true;;
-          B )
-            backup_all=true;;
-          s )
-            skip=true;;
-          S )
-            skip_all=true;;
-          * )
-            ;;
-        esac
-      fi
+      case "$action" in
+        o )
+       	  overwrite=true;;
+	  	b )
+          backup=true;;
+        s )
+          skip=true;;
+        * )
+          ;;
+      esac
 
-      if [ "$overwrite" == "true" ] || [ "$overwrite_all" == "true" ]
+      if [ "$overwrite" == "true" ]
       then
         rm -rf $dest
         success "removed $dest"
       fi
 
-      if [ "$backup" == "true" ] || [ "$backup_all" == "true" ]
+      if [ "$backup" == "true" ]
       then
-        mv $dest $dest\.backup
-        success "moved $dest to $dest.backup"
+        mv $dest $dest\.$backup_time_stamp
+        success "backed up $dest to $dest.$backup_time_stamp"
       fi
 
-      if [ "$skip" == "false" ] && [ "$skip_all" == "false" ]
+      if [ "$skip" == "false" ]
       then
         link_files $source $dest
       else
@@ -129,19 +116,7 @@ install_dotfiles () {
 echo -e '\n  :: dotfiles installation ::\n'
 
 #setup_gitconfig
-#install_dotfiles
-
-# If we're on a Mac, let's install and setup homebrew.
-#if [ "$(uname -s)" == "Darwin" ]
-#then
-  #info "installing dependencies"
-  #if . bin/dot > /tmp/dotfiles-dot 2>&1
-  #then
-    #success "dependencies installed"
-  #else
-    #fail "error installing dependencies"
-  #fi
-#fi
+install_dotfiles
 
 echo -e '\n'
 echo -e '  All installed!'
