@@ -1,0 +1,26 @@
+# The .options file contains option settings and is sourced by the bashrc 
+# file.
+
+# set Vi keybindings.
+set -o vi
+
+# spell check cd commands.
+shopt -sq cdspell              
+
+# include dot files in pathname expansion.
+shopt -sq dotglob 
+
+# case insensitive pathname expansion.
+shopt -sq nocaseglob
+
+# make command line completion ignore case.
+set completion-ignore-case on  
+
+# mark compleated directories by appending a slash.
+set mark-directories on        
+
+# allow hidden files to be matched when doing compleation.
+set match-hidden-files on      
+
+# display compleation ambiguities.
+set show-all-if-ambiguous on   

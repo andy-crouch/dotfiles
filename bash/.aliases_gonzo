@@ -1,0 +1,12 @@
+# The .aliases_gonzo file is a machine dependant aliases file, sourced by 
+# the bashrc file.
+
+# arch pacman aliases
+alias pkg_install='sudo pacman -S $1'
+alias pkg_remove='sudo pacman -Rs $1'
+alias pkg_update='sudo pacman -Syu'
+alias pkg_search='sudo pacman -Ss $1 $2'
+alias pkg_info='sudo pacman -Si $1'
+alias pkg_dependants='sudo pactree $1'
+
+

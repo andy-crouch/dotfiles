@@ -1,81 +1,8 @@
 "///////////////////////////////////////////////////////////////////////////////
-"//
-"// vimrc - Vim configuration file.
-"// ================================
-"//
-"// Version	:: 1.1
-"//
-"// About
-"// -----
-"//
-"//	This is my (evolving) vimrc file.  The aim of the file
-"// is to provide centralised settings which can be managed
-"// and loaded from my personal Dropbox folder. I would like 
-"// to thank Amir Salihefendic (http://goo.gl/tWgJF) whose
-"// blog post gave me the idea of storing my Vim settings this
-"// way.
-"//
-"// Setup
-"// -----
-"//
-"// In order to use the same approach I do you will need a Dropbox folder on 
-"// the target machine.  I use a directory within my Dropbox folder called
-"// /VimSettings within which I store my Vim runtime file and directory
-"// structure (see http://goo.gl/MpOnF for full details of the Vim 
-"// runtime directory structure).
-"//
-"// I then modify my ~/.vimrc on each machine to contain the following ...
-"//
-"//     " base .vimrc used to define current system & load settings from 
-"//     " personal Dropbox location ...
-"//     fun! MySys()
-"//         return \"linux\"
-"//     endfun
-"//
-"//     set runtimepath=~/Dropbox/VimSettings,$VIMRUNTIME
-"//     source ~/Dropbox/VimSettings/vimrc
-"//
-"// You should, obviously, change the path (~/Dropbox/VimSettings) to the
-"// path of your settings folder within your Dropbox folder. (Also note,
-"// the \ character of the return line is only required for commenting here
-"// and should be removed). The value returned by MySys() is used throughout
-"// the file to provide tailored functionality to be applied on a system by
-"// system basis and to allow for the different syntax for various platforms.
-"//
-"// Configuration Sections
-"// ----------------------
-"//
-"// I have split my file into the following sections :
-"//
-"// 	=> General settings
-"//	    => Status line settings
-"//	    => Font and colours settings 
-"//	    => Key mappings
-"//	    => Functions
-"//
-"// Plugin's
-"// --------
-"//
-"// I currently use the follow plugin's which may be referenced within my
-"// vimrc :
-"//
-"// 	=> comments.vim - Used to comment and uncomment lines of a file with the
-"//	                      file types associated comment character.  
-"//					      (See http://goo.gl/Ugipv)
-"// Version History
-"// ---------------
-"//
-"// > v1.1	:: Added my plugin's.
-"// > v1.0	:: Created from old file and implement new 
-"//			   Dropbox based central, controlled settings
-"//			   basis.  Tidied up and made useful.
-"// 
-"///////////////////////////////////////////////////////////////////////////////
-
-"///////////////////////////////////////////////////////////////////////////////
 "// General settings ...
 "///////////////////////////////////////////////////////////////////////////////
 
+set fileformats=unix,dos,mac	" File endings
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 
@@ -122,6 +49,10 @@ elseif MySys() == "windows"
 elseif MySys() == "linux"
 	autocmd! bufwritepost vimrc source ~/Dropbox/Config/VimSettings/vimrc
 endif
+
+
+autocmd InsertEnter * set cul
+autocmd InsertLeave * set nocul
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
@@ -204,7 +135,10 @@ else
 	if MySys() == "cygwin"
 		" Cygwin apparently only supports 8 (!) colours, back to a default 
 		" for now ...
-		colorscheme desert 
+		"colorscheme desert 
+		"set t_Co=256
+		let g:jellybeans_use_lowcolor_black = 0
+		colorscheme jellybeans
 	else
 		set t_Co=256
 		let g:jellybeans_use_lowcolor_black = 0

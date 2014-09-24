@@ -1,0 +1,50 @@
+# The .prompt file contains defintions for the various PS prompts used
+# by bash and defines the shell logon welcome message.  Sourced by the
+# bashrc file.
+
+# Prompt definition
+PS1='[ \[\e[1;33m\]\h\[\e[m\] ] \[\e[1;34m\]\w/\[\e[m\]\[\e[1;31m\]$(__git_ps1)\[\e[m\] \[\e[1;32m\]\$\[\e[m\] '
+
+# Continuation prompt definition
+PS2='[ \[\e[1;33m\]\h\[\e[m\] ] \[\e[1;34m\]\w/\[\e[m\]\[\e[1;31m\]$(__git_ps1)\[\e[m\] \[\e[1;32m\]... >\[\e[m\] '
+
+# Generate greeting based on time of day
+hour=`date +%k`
+greeting="Good morning"
+[[ $hour -gt 12 ]] && greeting='Good afternoon'
+[[ $hour -gt 18 ]] && greeting='Good evening'
+
+# Attempt to generate ip address details and connection type,
+# we will specifically test for a wireless connection otherwise
+# report that we are wired
+net_ip="Unknown"
+net_type="(No connection detected)"
+eth_ip=''
+wlan_ip=''
+if [[ `uname -smr` == CYGWIN* ]] 
+then
+	# Note - For Cygwin we have to try and parse ipconfig
+	wineth_conn_state=`ipconfig | awk '/Ethernet adapter Local Area Connection:/, /Media State/' | cut -d: -f2 | awk '/./' | tr -d ' '`
+	[[ $wineth_conn_state != "Mediadisconnected" ]] && eth_ip=`ipconfig | awk '/Ethernet adapter Local Area Connection:/, /Default Gateway/' | grep 'IPv4' | cut -d: -f2 | tr -d ' '`
+	[[ $wineth_conn_state == "Mediadisconnected" ]] && wlan_ip=`ipconfig | awk '/Wireless LAN adapter Wireless Network Connection:/, /Default Gateway/' | grep 'IPv4' | cut -d: -f2 | tr -d ' '`
+else
+	# Note - For *nix I am just parsing ip route
+	if [[ `ip route get 4.2.2.1 | grep -oP '(?<=dev )\S+'` == wlan* ]] 
+	then
+		wlan_ip=`ip route get 4.2.2.1 | grep -oP '(?<=src )\S+'`
+	else
+		eth_ip=`ip route get 4.2.2.1 | grep -oP '(?<=src )\S+'`
+	fi
+fi
+
+[[ ${#eth_ip} -gt 0 ]] && net_type="(Wired)" && net_ip=$eth_ip
+[[ ${#wlan_ip} -gt 0 ]] && net_type="(Wifi)" && net_ip=$wlan_ip 
+
+# Display the welcome message
+welcome_msg="${WHITE}$greeting ${RED}${BOLD}$USER${WHITE}.\n\nIt is now `date +%R\ on\ %A\ %d\ %B\ %Y\.`"
+echo -e $welcome_msg
+echo -e "\n"
+echo -e "  ${WHITE}Host   :: ${BLUE}${BOLD}$HOSTNAME${NOBOLD}"
+echo -e "  ${WHITE}Kernel :: ${BLUE}${BOLD}`uname -smr`${NOBOLD}"
+echo -e "  ${WHITE}IP     :: ${BLUE}${BOLD}${net_ip} ${GREEN}${BOLD}${net_type}${NOBOLD}${NC}"
+echo -e "\n"

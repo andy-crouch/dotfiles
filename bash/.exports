@@ -1,0 +1,23 @@
+# The .exports file contains export commands and is sourced by the bashrc file.
+
+# set svn editor to be vim ...
+export SVN_EDITOR=vim
+
+# add ~/Dropbox/ShellScripts to path ...
+if [ -d ~/Dropbox/ShellScripts ]; then
+	PATH=$PATH:~/Dropbox/ShellScripts
+	export PATH
+fi
+
+# set git_ps1 variables to show git prompt details ...
+export GIT_PS1_SHOWDIRTYSTATE=yes
+export GIT_PS1_SHOWSTASHSTATE=yes
+export GIT_PS1_SHOWUNTRACKEDFILES=yes
+export GIT_PS1_SHOWCOLORHINTSi=yes
+export GIT_PS1_SHOWUPSTREAM="verbose"
+
+# display any error code returned that is not 0 ...
+export PROMPT_COMMAND='ret=$?; if [ $ret -ne 0 ] ; then echo -e "${BLUE}${BOLD}\n[ Warning ] ${GREEN}returned${RED} $ret\n${NC}"; fi'
+
+
+

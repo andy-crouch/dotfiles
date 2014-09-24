@@ -1,0 +1,18 @@
+# The inputrc.symlink file is symlinked to the ~/.inputrc file.
+#
+#
+# The inputrc.symlink file is responsible for updating various configuration
+# settings that effect the Readline library (as used by Bash).
+#
+# (If the INPUTRC shell variable has been set to read configuration from 
+# another file then that file should be symlinked to the inputrc.symlink file).
+
+# Bind Up and Down arrow keys for cycling through the history list.
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+
+# For words with more than one completion match, list the words immediately.
+set show-all-if-ambiguous on
+
+# Perform case-insensitive filename matching and completion.
+set completion-ignore-case on
