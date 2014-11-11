@@ -1,6 +1,12 @@
 # The .functions file contains function definitions and is sourced by the 
 # bashrc file.
 
+# ping google to see response times/connection status.
+function check_connections()
+{
+	ping 8.8.8.8
+}
+
 # mkdir structure specified and then cd into the new directory.
 function mkdircd() 
 { 
