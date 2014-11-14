@@ -1,6 +1,12 @@
 # The .functions file contains function definitions and is sourced by the 
 # bashrc file.
 
+# clear the screen and long list the directory ...
+function clll()
+{
+	clear && ll
+}
+
 # ping google to see response times/connection status.
 function check_connections()
 {
