@@ -33,17 +33,17 @@ function cl()
 # application.
 function open()
 {
-	UNAME=`uname`
+	UNAME=`uname -s`
 	OSLINUX="Linux"
-	OSCYGWIN="CYGWIN_NT-6.1-WOW64"
+	OSCYGWIN="CYGWIN"
 	
 	if [ "$UNAME" = "$OSLINUX" ]; then
 		if [ "$1" = "" ]; then
-			echo "open Failed, no file specified to open."
+			echo "open function Failed, no file specified to open."
 		else
 			xdg-open "$1"
 		fi
-	elif [ "$UNAME" = "$OSCYGWIN" ]; then
+	elif [ "${UNAME:0:6}" = "$OSCYGWIN" ]; then
 		if [ "$1" = "" ]; then
 			NATIVE_PATH="."
 		else
