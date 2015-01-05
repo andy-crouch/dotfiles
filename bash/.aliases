@@ -15,6 +15,7 @@ alias exot='exit'
 alias ls='ls -CF --color=auto'
 alias la='ls -A --color=auto'
 alias ll='ls -AlF --color=auto'
+alias lld='ls -AlFt --color=auto'
 alias lsd='ls -l --color | grep "^d"'
 alias create='touch'
 
