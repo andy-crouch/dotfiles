@@ -4,7 +4,7 @@
 # holman/dotfiles (https://github.com/holman/dotfiles)
 # repo.
 #
-# The dotfiles script installs, sets up and configures the 
+# The dotfiles script installs, sets up and configures the
 # various dotfiles and components in the dotfiles parent
 # directory.
 
@@ -57,6 +57,12 @@ setup_gitconfig () {
 link_files () {
   ln -s $1 $2
   success "linked $1 to $2"
+}
+
+install_git_submoules(){
+    info 'Cloning & initialising git submodules'
+    git submodule update --init --recursive --quiet
+    success 'Done'
 }
 
 install_dotfiles () {
@@ -116,6 +122,7 @@ install_dotfiles () {
 echo -e '\n  :: dotfiles installation ::\n'
 
 #setup_gitconfig
+install_git_submoules
 install_dotfiles
 
 echo -e '\n'
