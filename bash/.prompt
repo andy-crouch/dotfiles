@@ -29,7 +29,7 @@ then
 	[[ $wineth_conn_state == "Mediadisconnected" ]] && wlan_ip=`ipconfig | awk '/Wireless LAN adapter Wireless Network Connection:/, /Default Gateway/' | grep 'IPv4' | cut -d: -f2 | tr -d ' '`
 else
 	# Note - For *nix I am just parsing ip route
-	if [[ `ip route get 4.2.2.1 | grep -oP '(?<=dev )\S+'` == wlan* ]] 
+	if [[ `ip route get 4.2.2.1 | grep -oP '(?<=dev )\S+'` == wlp* ]] 
 	then
 		wlan_ip=`ip route get 4.2.2.1 | grep -oP '(?<=src )\S+'`
 	else
