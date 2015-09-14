@@ -21,12 +21,12 @@ net_ip="Unknown"
 net_type="(No connection detected)"
 eth_ip=''
 wlan_ip=''
-if [[ `uname -smr` == CYGWIN* ]] 
+if [[ `uname -smr` == CYGWIN* ]]
 then
 	# Note - For Cygwin we have to try and parse ipconfig
-	wineth_conn_state=`ipconfig | awk '/Ethernet adapter Local Area Connection:/, /Media State/' | cut -d: -f2 | awk '/./' | tr -d ' '`
-	[[ $wineth_conn_state != "Mediadisconnected" ]] && eth_ip=`ipconfig | awk '/Ethernet adapter Local Area Connection:/, /Default Gateway/' | grep 'IPv4' | cut -d: -f2 | tr -d ' '`
-	[[ $wineth_conn_state == "Mediadisconnected" ]] && wlan_ip=`ipconfig | awk '/Wireless LAN adapter Wireless Network Connection:/, /Default Gateway/' | grep 'IPv4' | cut -d: -f2 | tr -d ' '`
+	wineth_conn_state=`ipconfig | awk '/Ethernet adapter Ethernet:/, /Media State/' | cut -d: -f2 | awk '/./' | tr -d ' '`
+	[[ $wineth_conn_state != "Mediadisconnected" ]] && eth_ip=`ipconfig | awk '/Ethernet adapter Ethernet:/, /Default Gateway/' | grep 'IPv4' | cut -d: -f2 | tr -d ' '`
+	[[ $wineth_conn_state == "Mediadisconnected" ]] && wlan_ip=`ipconfig | awk '/Wireless LAN adapter WiFi:/, /Default Gateway/' | grep 'IPv4' | cut -d: -f2 | tr -d ' '`
 else
 	# Note - For *nix I am just parsing ip route
 	if [[ `ip route get 4.2.2.1 | grep -oP '(?<=dev )\S+'` == wlp* ]] 
