@@ -3,6 +3,9 @@
 # set svn editor to be vim ...
 export SVN_EDITOR=vim
 
+# set visual editor to be vim ...
+export VISUAL="vim"
+
 # add ~/Dropbox/ShellScripts to path ...
 if [ -d ~/Dropbox/ShellScripts ]; then
 	PATH=$PATH:~/Dropbox/ShellScripts
