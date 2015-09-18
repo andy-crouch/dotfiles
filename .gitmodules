@@ -10,3 +10,6 @@
 [submodule "vim/bundle/nerdcommenter"]
 	path = vim/bundle/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter.git
+[submodule "vim/bundle/vim-ps1"]
+	path = vim/bundle/vim-ps1
+	url = https://github.com/PProvost/vim-ps1.git
