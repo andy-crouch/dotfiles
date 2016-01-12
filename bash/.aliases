@@ -31,5 +31,8 @@ alias gc='git commit'
 alias gd='git diff'
 alias go='git checkout '
 
-#Cygwin aliases
+# Cygwin aliases
 alias copen='cygstart '
+
+# Python aliases
+alias activate='source bin/activate'
