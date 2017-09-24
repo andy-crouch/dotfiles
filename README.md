@@ -1,4 +1,4 @@
-#dotfiles - README
+![image](dotfiles.png)
 
 This (/dotfiles) repository has been created as the new home for my configuration dotfiles.  This will mainly be my Vim configuration files and plugins and my Bash configuration files.
 
