@@ -15,22 +15,31 @@ set -e
 
 echo ''
 
-info () {
+info () 
+{
   printf "    [ \033[00;34m  ..  \033[0m ] $1"
 }
 
-user () {
+user () 
+{
   printf "\r    [ \033[0;33m  ?  \033[0m ] $1 "
 }
 
-success () {
+success () 
+{
   printf "\r\033[2K    [ \033[00;32m  OK  \033[0m ] $1\n"
 }
 
-fail () {
+fail () 
+{
   printf "\r\033[2K    [\033[0;31m  FAIL  \033[0m] $1\n"
   echo ''
   exit
+}
+
+std_stream()
+{
+	echo -e " $1"
 }
 
 setup_gitconfig () {
@@ -65,6 +74,17 @@ install_git_submoules(){
     git submodule update --init --recursive --quiet
     success 'Done'
 }
+
+usage () 
+{
+	std_stream "This application installs and configures the dotfiles from https://github.com/andy-crouch/dotfiles."
+	std_stream "Full details of how this application works and the command line options can be found in the above repository."
+	std_stream "\n\tUsage: dotfles <operation>"
+	std_stream "\t\tdotfiles (-i --install)       - Installs and links the dotfiles to the local file system."
+	std_stream "\t\tdotfiles (-u --update)        - Updates the repository and any installed sub modules."
+	std_stream "\t\tdotfiles (-m --module-update) - Updates installed sub modules only (not core repository files)."
+}
+
 
 install_dotfiles () {
   backup_time_stamp=`date +%d-%m-%Y:%H%M`
@@ -132,12 +152,40 @@ echo -e '\n
                                           
 '
 
+while [ "$1" != "" ]; do
+    case $1 in
+        -i | --install )           
+			shift
+			echo -e "Installing"
+			;;
+        -u | --update )    
+			shift
+			echo -e "Updating"
+			;;
+        -h | --help )           
+			shift
+			usage
+			;;
+        -m | --module-update )           
+			shift
+			echo -e "Updating Sub Modules"
+			;;
+        * )                     
+			shift
+			usage
+			;;
+    esac
+done
+
+
+
+
+
 #setup_gitconfig
 #install_git_submoules
-install_dotfiles
+#install_dotfiles
 
-echo -e '\n'
-echo -e '  All installed!'
-echo -e '\n'
-
+#echo -e '\n'
+#echo -e '  All installed!'
+#echo -e '\n'
 
