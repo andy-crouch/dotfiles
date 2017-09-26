@@ -78,11 +78,12 @@ install_git_submoules(){
 usage () 
 {
 	std_stream "This application installs and configures the dotfiles from https://github.com/andy-crouch/dotfiles."
-	std_stream "Full details of how this application works and the command line options can be found in the above repository."
-	std_stream "\n\tUsage: dotfles <operation>"
-	std_stream "\t\tdotfiles (-i --install)       - Installs and links the dotfiles to the local file system."
-	std_stream "\t\tdotfiles (-u --update)        - Updates the repository and any installed sub modules."
-	std_stream "\t\tdotfiles (-m --module-update) - Updates installed sub modules only (not core repository files)."
+	std_stream "\n Full details of how this application works and the command line options can be found in the above repository."
+	std_stream "\n Usage: dotfles <operation>"
+	std_stream "       dotfiles (-i --install)        - Installs and links the dotfiles to the local file system."
+	std_stream "       dotfiles (-u --update)         - Updates the repository and any installed sub modules."
+	std_stream "       dotfiles (-m --modules-update) - Updates installed sub modules only (not core repository files)."
+	std_stream "\n"
 }
 
 
@@ -166,7 +167,7 @@ while [ "$1" != "" ]; do
 			shift
 			usage
 			;;
-        -m | --module-update )           
+        -m | --modules-update )           
 			shift
 			echo -e "Updating Sub Modules"
 			;;
