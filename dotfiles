@@ -50,19 +50,21 @@ link_files()
 
 setup_gitconfig() 
 {
-  if ! [ -f git/.gitconfig.symlink ]
+  if test -e ~/.gitcredentials.config
   then
-    info 'Setting up gitconfig'
-
-    user ' - What is your github author name?'
-    read -e git_authorname
-
-    user ' - What is your github author email?'
-    read -e git_authoremail
-
-    sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g" -e git/gitconfig.symlink.example > git/.gitconfig.symlink
-
-    success 'gitconfig'
+      success '.gitconfig Credentials Initialised, Nothing To Do.'
+  else
+      info 'Setting Up .gitconfig'
+  
+      user ' - What Is Your Git Autor Name?'
+      read -e git_authorname
+  
+      user ' - What Is Your Git Author Email Address?'
+      read -e git_authoremail
+  
+      sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g"  git/gitcredentials.template > ~/.gitcredentials.config
+  
+      success  'Setting Up .gitconfig'
   fi
 }
 
@@ -153,10 +155,12 @@ echo -e '\n
 while [ "$1" != "" ]; do
     case $1 in
         -i | --install )           
+			setup_gitconfig
 			shift
 			echo -e "Installing"
 			;;
         -u | --update )    
+			setup_gitconfig
 			shift
 			echo -e "Updating"
 			;;
@@ -175,7 +179,6 @@ while [ "$1" != "" ]; do
     esac
 done
 
-setup_gitconfig()
 #install_git_submoules
 #install_dotfiles
 
