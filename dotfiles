@@ -85,6 +85,10 @@ usage ()
 	std_stream "\n"
 }
 
+set_environment_appearance()
+{
+	nitrogen --set-scaled ~/.dotfiles/background/Looking-For-Alaska.jpg
+}
 
 install_dotfiles () {
   backup_time_stamp=`date +%d-%m-%Y:%H%M`
@@ -156,11 +160,13 @@ while [ "$1" != "" ]; do
     case $1 in
         -i | --install )           
 			setup_gitconfig
+			set_environment_appearance
 			shift
 			echo -e "Installing"
 			;;
         -u | --update )    
 			setup_gitconfig
+			set_environment_appearance
 			shift
 			echo -e "Updating"
 			;;
