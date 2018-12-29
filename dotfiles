@@ -1,4 +1,3 @@
-# - For Windows Vim, Copy the .dotfiles/Vim/ directory to /vimfiles and the .dotfiles/.vimrc to .vimrc both in the users root directory.
 #!/usr/bin/env bash
 #
 # Based on a fork of the Bootstrap script from the
@@ -8,6 +7,7 @@
 # The dotfiles script installs, sets up and configures the
 # various dotfiles and components in the dotfiles parent
 # directory.
+# - For Windows Vim, Copy the .dotfiles/Vim/ directory to /vimfiles and the .dotfiles/.vimrc to .vimrc both in the users root directory.
 
 dotfiles_root=`pwd`
 
