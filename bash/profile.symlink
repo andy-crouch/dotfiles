@@ -1,5 +1,0 @@
-# The profile.symlink file is symlinked to the ~/.profile file.
-#
-# The profile.symlink file is responsible for sourcing the .bashrc file.
-
-[[ -e "${HOME}/.bashrc" ]] && source "${HOME}/.bashrc"

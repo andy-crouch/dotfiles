@@ -1,26 +1,34 @@
 # The .options file contains option settings and is sourced by the bashrc 
 # file.
 
-# set Vi keybindings.
+# Set Vi keybindings.
 set -o vi
 
-# spell check cd commands.
+# Spell check cd commands.
 shopt -sq cdspell              
 
-# include dot files in pathname expansion.
+# Include dot files in pathname expansion.
 shopt -sq dotglob 
 
-# case insensitive pathname expansion.
+# Case insensitive pathname expansion.
 shopt -sq nocaseglob
 
-# make command line completion ignore case.
+# Make command line completion ignore case.
 set completion-ignore-case on  
 
-# mark compleated directories by appending a slash.
+# Mark compleated directories by appending a slash.
 set mark-directories on        
 
-# allow hidden files to be matched when doing compleation.
+# Allow hidden files to be matched when doing compleation.
 set match-hidden-files on      
 
-# display compleation ambiguities.
+# Display compleation ambiguities.
 set show-all-if-ambiguous on   
+
+# Bash won't get SIGWINCH if another process is in the foreground.
+# Enabled checkwinsize so that bash will check the terminal size when
+# it regains control.  
+shopt -s checkwinsize
+
+
+

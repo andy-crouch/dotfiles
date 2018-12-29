@@ -1,7 +1,7 @@
 # The .aliases file contains my generic aliases commands and is sourced by the 
 # bashrc file.
 
-# dotfiles utility aliases.
+# Dotfiles utility aliases.
 alias df_functions="declare -F | cut -d' ' -f3"
 alias df_aliases="compgen -a"
 alias df_aliase_details="alias"
@@ -18,6 +18,7 @@ alias ll='ls -AlF --color=auto'
 alias lld='ls -AlFt --color=auto'
 alias lsd='ls -l --color | grep "^d"'
 alias create='touch'
+alias cp="cp -i" 
 
 # Find aliases.
 alias find_text='grep -Rin --color'

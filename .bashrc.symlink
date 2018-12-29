@@ -4,7 +4,7 @@
 # files in the .dotfiles/bash/ sub-directory as well as other bash specific dot files.
 #
 # This file will source any dot file or any file prefixed with .bash, in addition
-# any file suffixed with _hostname (where hostname is the value of $hostname) will
+# any file suffixed with _hostname (where hostname is the value of $HOSTNAME) will
 # also be sourced (useful for creating host specific versions of files).
 
 # Check for an interactive session and return if not in one.
@@ -28,10 +28,10 @@ bash_source_files=`find ${bash_df_dir} -maxdepth 2 -iname '.*' -a ! -iname '.bas
 # Source files returned by the above query and check and source host specific files.
 for bash_source_file in $bash_source_files
 do
-	host_override_file="${bash_source_file}_${hostname}"
-	[[ -e "${bash_source_file}" && -r "${bash_source_file}" ]] && . "$bash_source_file"
-	[[ -e "${host_override_file}" && -r "${host_override_file}" ]] && . "$host_override_file"
-	unset host_override_file
+  host_override_file="${bash_source_file}_${hostname}"
+  [[ -e "${bash_source_file}" && -r "${bash_source_file}" ]] && . "$bash_source_file"
+  [[ -e "${host_override_file}" && -r "${host_override_file}" ]] && . "$host_override_file"
+  unset host_override_file
 done
 unset bash_source_file
 
