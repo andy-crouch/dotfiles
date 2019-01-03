@@ -1,19 +1,21 @@
+#!/usr/bin/env bash
+#
 # The .exports file contains export commands and is sourced by the bashrc file.
 
-# Set svn editor to be vim ...
+# Set svn editor to be vim.
 export SVN_EDITOR=vim
 
-# Set visual editor to be vim ...
+# Set visual editor to be vim.
 export VISUAL="vim"
 
-# Set git_ps1 variables to show git prompt details ...
+# Set git_ps1 variables to show git prompt details.
 export GIT_PS1_SHOWDIRTYSTATE=yes
 export GIT_PS1_SHOWSTASHSTATE=yes
 export GIT_PS1_SHOWUNTRACKEDFILES=yes
 export GIT_PS1_SHOWCOLORHINTSi=yes
 export GIT_PS1_SHOWUPSTREAM="verbose"
 
-# Display any error code returned that is not 0 ...
+# Display any error code returned that is not 0.
 export PROMPT_COMMAND='ret=$?; if [ $ret -ne 0 ] ; then echo -e "${BLUE}${BOLD}\n[ Warning ] ${GREEN}returned${RED} $ret\n${NC}"; fi'
 
 

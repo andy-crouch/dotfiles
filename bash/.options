@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+#
 # The .options file contains option settings and is sourced by the bashrc 
 # file.
 

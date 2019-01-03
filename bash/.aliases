@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+#
 # The .aliases file contains my generic aliases commands and is sourced by the 
 # bashrc file.
 
@@ -35,5 +37,3 @@ alias go='git checkout '
 # Cygwin aliases
 alias copen='cygstart '
 
-# Python aliases
-alias activate='source bin/activate'

@@ -1,5 +1,9 @@
+#!/usr/bin/env bash
+#
 # The .colours file contains Bash colour & style definitions and is sourced
 # by the bashrc file.
+
+# shellcheck disable=SC2034
 
 # Style definitions ...
 BOLD='\E[1m'
