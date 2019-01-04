@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # The inputrc.symlink file is symlinked to the ~/.inputrc file.
 #
 #
