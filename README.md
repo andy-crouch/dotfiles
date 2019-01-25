@@ -10,7 +10,7 @@ This is **my** repository and designed to be useful to me.  I have spent a numbe
 
 ## How it works .
 
-The mechanism I have settled on is simple, symbolic links (symlinks).  Any file or directory that I want to manage across environments is added to the .dotfiles/ directory and has a **.symlink** extension added.  it doesn't matter if it is a file or a directory.  The files and directories are added as if the *.dotfiles/* directory was actually your */home* directory.  So for example *.bashrc* is stored at *.dotfiles/bashrc.symlink*.  If you are managing your i3 configuration which is found at in your home directory as *~/.i3/* then you would add it as *.dotfiles/i3.symlink*.  It's that simple.
+The mechanism I have settled on is simple, symbolic links (symlinks).  Any file or directory that I want to manage across environments is added to the .dotfiles/ directory and has a **.symlink** extension added.  it doesn't matter if it is a file or a directory.  The files and directories are added as if the *.dotfiles/* directory was actually your */home* directory.  So for example *.bashrc* is stored at *.dotfiles/bashrc.symlink*.  If you are managing your i3 configuration which is found at in your home directory as *~/.i3/config* then you would add it as *.dotfiles/.i3.symlink/config*.  It's that simple.
 
 ## Theme's, settings and configurations.
 
@@ -29,7 +29,6 @@ I used the [Nord](https://github.com/arcticicestudio/nord) theme across my shell
 
 * **.dir_colors** - [Github](https://github.com/arcticicestudio/nord-dircolors).  My configuration uses the Nord source as is.
 * **.Xresrouces** - [Github](https://github.com/arcticicestudio/nord-xresources).  My configuration stores the colour codes in *.dotfiles/urxvt/.nord-urxvt-colors.*
-* 
 
 #### i3
 
@@ -71,7 +70,7 @@ cd ~/.dotfiles
 
 ## Running the tests
 
-The ***test.sh*** script in the root of the .dofiles/ directory will use **shellchecker** to catch issues with any scripts.  To run the script, run:
+The ***test.sh*** script in the root of the .dofiles/ directory will use [shellchecker](https://github.com/koalaman/shellcheck) to catch issues with any scripts.  To run the script, run:
 
 ```cd ~/.dotfiles
 cd ~/.dotfiles
@@ -86,7 +85,7 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 
 ## Versioning
 
-The current version of the **./dotfiles** project is 1.0.0
+The current version of the **./dotfiles** project is 0.9.9
 
 #### Project versioning mechanism 
 
