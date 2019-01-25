@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 #
-# Based on a fork of the Bootstrap script from the
+# This script configures and helps to manage the settings and 
+# configurations
+# in the dotfiles directory.
+# 
+#  on a fork of the Bootstrap script from the
 # holman/dotfiles (https://github.com/holman/dotfiles)
 # repo.
 #
@@ -9,47 +13,55 @@
 # directory.
 # - For Windows Vim, Copy the .dotfiles/Vim/ directory to /vimfiles and the .dotfiles/.vimrc to .vimrc both in the users root directory.
 
-dotfiles_root=`pwd`
+# Set the script execution path ...
+cd "/$HOME/.dotfiles/" || exit
+dotfiles_root=$(pwd)
 
+# Break errors ...
 set -e
 
-echo ''
+# Output shiny header ....
+echo -e '\n
+      _               ___ _ _             
+     | |       _     / __|_) |            
+   __| | ___ _| |_ _| |__ _| | _____  ___ 
+  / _  |/ _ (_   _|_   __) | || ___ |/___)
+ ( (_| | |_| || |_  | |  | | || ____|___ |
+(_)____|\___/  \__) |_|  |_|\_)_____|___/ 
+\n                                          
+'
 
-info() 
-{
-  printf "    [ \033[00;34m  ..  \033[0m ] $1"
+# Define information helper output function ...
+info() {
+  printf "    [ \033[00;34m  ..  \033[0m ] %s " "$1"
 }
 
-user() 
-{
-  printf "\r    [ \033[0;33m  ?  \033[0m ] $1 "
+# Define user question helper function ...
+user() {
+  printf "\r    [ \033[0;33m  ?  \033[0m ] %s " "$1"
 }
 
-success() 
-{
-  printf "\r\033[2K    [ \033[00;32m  OK  \033[0m ] $1\n"
+# Define success output helper function ...
+success() {
+  printf "\r\033[2K    [ \033[00;32m  OK  \033[0m ] %s\n" "$1"
 }
 
-fail() 
-{
-  printf "\r\033[2K    [\033[0;31m  FAIL  \033[0m] $1\n"
+# Define function to output a failure message and exit the script ...
+fail() {
+  printf "\r\033[2K    [\033[0;31m  FAIL  \033[0m] %s\n" "$1"
   echo ''
   exit
 }
 
-std_stream()
-{
-	echo -e " $1"
-}
-
-link_files() 
-{
-  ln -s $1 $2
+# Define a function that will create a soft link between the files 
+# specified in $1 and $2 ...
+link_files() {
+  ln -s "$1" "$2"
   success "linked $1 to $2"
 }
 
-setup_gitconfig() 
-{
+# Define a function that will
+setup_gitconfig() {
   if test -e ~/.gitcredentials.config
   then
       success '.gitconfig Credentials Initialised, Nothing To Do.'
@@ -57,10 +69,10 @@ setup_gitconfig()
       info 'Setting Up .gitconfig'
   
       user ' - What Is Your Git Autor Name?'
-      read -e git_authorname
+      read -r -e git_authorname
   
       user ' - What Is Your Git Author Email Address?'
-      read -e git_authoremail
+      read -r -e git_authoremail
   
       sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g"  git/gitcredentials.template > ~/.gitcredentials.config
   
@@ -68,46 +80,41 @@ setup_gitconfig()
   fi
 }
 
-install_git_submoules(){
-    info 'Cloning & initialising git submodules'
-    git submodule update --init --recursive --quiet
-    success 'Done'
-}
+#install_git_submoules() {
+#  info 'Cloning & initialising git submodules'
+#  git submodule update --init --recursive --quiet
+#  success 'Done'
+#}
 
-usage () 
-{
-	std_stream "This application installs and configures the dotfiles from https://github.com/andy-crouch/dotfiles."
-	std_stream "\n Full details of how this application works and the command line options can be found in the above repository."
-	std_stream "\n Usage: dotfles <operation>"
-	std_stream "       dotfiles (-i --install)        - Installs and links the dotfiles to the local file system."
-	std_stream "       dotfiles (-u --update)         - Updates the repository and any installed sub modules."
-	std_stream "       dotfiles (-m --modules-update) - Updates installed sub modules only (not core repository files)."
-	std_stream "\n"
-}
-
-set_environment_appearance()
-{
-	nitrogen --set-scaled ~/.dotfiles/background/Looking-For-Alaska.jpg
+# Define function to output usage guidance ...
+usage () {
+  echo -e " This application installs and configures the dotfiles from https://github.com/andy-crouch/dotfiles."
+  echo -e " \n Full details of how this application works and the command line options can be found in the above repository."
+  echo -e " \n Usage: dotfles <operation>"
+  echo -e "        dotfiles (-i --install)        - Installs and links the dotfiles to the local file system."
+  echo -e "        dotfiles (-u --update)         - Updates the repository and any installed sub modules."
+  echo -e "        dotfiles (-m --modules-update) - Updates installed sub modules only (not core repository files)."
+  echo -e " \n"
 }
 
 install_dotfiles () {
-  backup_time_stamp=`date +%d-%m-%Y:%H%M`
+	backup_time_stamp=$(date +%d-%m-%Y:%H%M)
 
-  for source in `find $dotfiles_root -maxdepth 5 -name \*.symlink`
+  for source in $(find $dotfiles_root -maxdepth 5 -name \*.symlinkr)
   do
 #	target_path="$HOME/${source#$dotfiles_root/}"
 	target_path="/home/andy/TestHome/${source#$dotfiles_root/}"
 	target_dir=$(dirname "${target_path}")
-	file_name="`basename \"${source%.*}\"`"
+	file_name="$(basename \"${source%.*}\")"
 
 	dest="$target_dir/$file_name"
 	
-	if [ -f $source ] && [ ! -d "${target_dir}" ]
+	if [ -f "$source" ] && [ ! -d "${target_dir}" ]
 	then
-		mkdir -p $target_dir
+		mkdir -p "$target_dir"
 	fi
 
-    if [ -f $dest ] || [ -d $dest ]
+    if [ -f "$dest" ] || [ -d "$dest" ]
     then
 
       overwrite=false
@@ -115,7 +122,7 @@ install_dotfiles () {
       skip=false
 
       user "File already exists: $dest, what do you want to do? [s]kip, [o]verwrite, [b]ackup?"
-      read -n 1 action
+      read -r -n 1 action
 
       case "$action" in
         o )
@@ -130,48 +137,37 @@ install_dotfiles () {
 
       if [ "$overwrite" == "true" ]
       then
-        rm -rf $dest
+        rm -rf "$dest"
         success "removed $dest"
       fi
 
       if [ "$backup" == "true" ]
       then
-        mv $dest $dest\.$backup_time_stamp
+        mv "$dest" "$dest\.$backup_time_stamp"
         success "backed up $dest to $dest.$backup_time_stamp"
       fi
 
       if [ "$skip" == "false" ]
       then
-        link_files $source $dest
+        link_files "$source" "$dest"
       else
         success "skipped $source"
       fi
 
     else
-      link_files $source $dest
+      link_files "$source" "$dest"
     fi
 
   done
 }
 
-echo -e '\n
-      _               ___ _ _             
-     | |       _     / __|_) |            
-   __| | ___ _| |_ _| |__ _| | _____  ___ 
-  / _  |/ _ (_   _|_   __) | || ___ |/___)
- ( (_| | |_| || |_  | |  | | || ____|___ |
-(_)____|\___/  \__) |_|  |_|\_)_____|___/ 
-                                          
-'
-
 while [ "$1" != "" ]; do
     case $1 in
         -i | --install )           
 			setup_gitconfig
-			set_environment_appearance
 			install_dotfiles
 			shift
-			echo -e "Installing"
+			echo -e ""
 			;;
         -u | --update )    
 			setup_gitconfig

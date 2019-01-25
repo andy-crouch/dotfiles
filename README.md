@@ -8,15 +8,20 @@ The repository includes the ***dotfiles*** script, in the root directory, which 
 
 This is **my** repository and designed to be useful to me.  I have spent a number of years trying to tame the files within but I do not focus a lot of time on the code.  If you would find it useful then I have no issue with you forking it and using it to manage your dotfiles and configuration settings.  If you see something you want to change or fix then I am open to PR's. 
 
-## How it works 
+## How it works .
 
-The basic premise I have settled on is simply, symbolic links (symlinks).  Any file or directory that I want to manage across environments is added to the .dotfiles/ directory and has a **.symlink** extension added.  Doesn't matter if it is a file or a directory.  The files and directory's are added as if the .dotfiles directory was actually your /home directory.  So for example ***.bashrc*** is stored at ***.dotfiles/bashrc.symlink***.  If you are managing your i3 configuration which is found at in your home directory as ***~/.i3/*** then you would add it as ***.dotfiles/i3.symlink***.  It's that simple.
+The mechanism I have settled on is simple, symbolic links (symlinks).  Any file or directory that I want to manage across environments is added to the .dotfiles/ directory and has a **.symlink** extension added.  it doesn't matter if it is a file or a directory.  The files and directories are added as if the *.dotfiles/* directory was actually your */home* directory.  So for example *.bashrc* is stored at *.dotfiles/bashrc.symlink*.  If you are managing your i3 configuration which is found at in your home directory as *~/.i3/* then you would add it as *.dotfiles/i3.symlink*.  It's that simple.
 
-### Managed Configurations
+## Theme's, settings and configurations.
 
-#### Git
+Each theme, setting and configuration I manage via this repository is documented on the [wiki](https://github.com/andy-crouch/dotfiles/wiki).  Click a link below to find out more:
 
-More details coming soon.
+* [i3-gaps theme, settings and configuration ]()
+* [Git]()
+* [Shell theme]()
+* [Bash settings and configuration]()
+* [zsh settings and configuration]()
+* [Nitrogen]()
 
 #### Shell Theme
 
@@ -25,14 +30,6 @@ I used the [Nord](https://github.com/arcticicestudio/nord) theme across my shell
 * **.dir_colors** - [Github](https://github.com/arcticicestudio/nord-dircolors).  My configuration uses the Nord source as is.
 * **.Xresrouces** - [Github](https://github.com/arcticicestudio/nord-xresources).  My configuration stores the colour codes in *.dotfiles/urxvt/.nord-urxvt-colors.*
 * 
-
-#### Bash
-
-More details coming soon.
-
-#### Zsh
-
-More details coming soon.
 
 #### i3
 
@@ -55,7 +52,7 @@ In order to get started you should clone this repository with the following comm
 git clone https://github.com/andy-crouch/dotfiles.git ~/.dotfiles
 ```
 
-This will download **my** dotfiles and settings.  If you decide to fork this repository then my settings will show you how I have structured the files and settings and give you a boiler plate repository to use for your own.  
+This will download **my** dotfiles and settings.  If you decide to fork this repository then my settings will show you how I have structured the files and settings and give you a boilerplate repository to use for your own.  
 
 ### Prerequisites
 
