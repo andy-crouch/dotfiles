@@ -22,7 +22,7 @@ echo -e '\n
 set -e
 
 # Set the expected root dotfile directory path
-cd "/$HOME/.dotfiles/" || exit
+cd "$HOME/.dotfiles/" || exit
 dotfiles_root=$(pwd)
 
 # Define UI helpers
@@ -88,7 +88,8 @@ usage () {
 install_dotfiles () {
   backup_time_stamp=$(date +%d-%m-%Y:%H%M)
 
-  for source in $(find $dotfiles_root -maxdepth 5 -name \*.symlink)
+  find "$dotfiles_root" -maxdepth 5 -name \*.symlink |
+  while read -r source
   do
 
   #  target_path="$HOME/${source#$dotfiles_root/}"
@@ -111,7 +112,7 @@ install_dotfiles () {
       skip=false
 
       user "File already exists: $dest, what do you want to do? [s]kip, [o]verwrite, [b]ackup?"
-      read -r -n 1 action
+      read -r -n action
 
       case "$action" in
         o )
@@ -150,12 +151,13 @@ install_dotfiles () {
   done
 }
 
-# Process run command
+# Process command line arguments
 if [ $# -lt 1 ] ; then
     usage
 fi
 
-while [ "$1" != "" ]; do
+if [ "$1" != "" ]
+then
   case $1 in
     -i | --install )           
       setup_gitconfig
@@ -180,7 +182,7 @@ while [ "$1" != "" ]; do
       usage
       ;;
   esac
-done
+fi
 
 
 
