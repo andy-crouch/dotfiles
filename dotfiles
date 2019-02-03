@@ -1,23 +1,13 @@
 #!/usr/bin/env bash
 #
-# This script installs and helps to manage the settings and configurations 
-# in the ~/.dotfiles directory.
+# This script installs and helps to manage the settings and configurations in 
+# the ~/.dotfiles directory.
 # 
-# The script was inspired by an orgianl set up script found in the
+# This script was inspired by an original set up script found in the
 # holman/dotfiles (https://github.com/holman/dotfiles) repo.
 #
-# Use ./dofiles -h (-help) for usage details.
-#
-# - For Windows Vim, Copy the .dotfiles/Vim/ directory to /vimfiles and the .dotfiles/.vimrc to .vimrc both in the users root directory.
+# Use dofiles -h (-help) for usage details.
 
-# Set the script execution path ...
-cd "/$HOME/.dotfiles/" || exit
-dotfiles_root=$(pwd)
-
-# Break errors ...
-set -e
-
-# Output script header ....
 echo -e '\n
       _               ___ _ _             
      | |       _     / __|_) |            
@@ -28,36 +18,41 @@ echo -e '\n
 \n                                          
 '
 
-# Define information helper output function ...
+# Set script options
+set -e
+
+# Set the expected root dotfile directory path
+cd "/$HOME/.dotfiles/" || exit
+dotfiles_root=$(pwd)
+
+# Define UI helpers
 info() {
   printf "    [ \033[00;34m  ..  \033[0m ] %s " "$1"
 }
 
-# Define user question helper function ...
 user() {
   printf "\r    [ \033[0;33m  ?  \033[0m ] %s " "$1"
 }
 
-# Define success output helper function ...
 success() {
   printf "\r\033[2K    [ \033[00;32m  OK  \033[0m ] %s\n" "$1"
 }
 
-# Define function to output a failure message and exit the script ...
 fail() {
   printf "\r\033[2K    [\033[0;31m  FAIL  \033[0m] %s\n" "$1"
   echo ''
   exit
 }
 
-# Define a function that will create a soft link between the files 
-# specified in $1 and $2 ...
+# Define a function to create a soft symlink between the 
+# source path ($1) and the destination path ($2)
 link_files() {
   ln -s "$1" "$2"
   success "linked $1 to $2"
 }
 
-# Define a function that will set up the git credentials ...
+# Define a function to generate the users ~/.gitcredentials.config file.
+# (This file is used to hold git secrets so they are not checked in to git)
 setup_gitconfig() {
   if test -e ~/.gitcredentials.config
   then
@@ -65,7 +60,7 @@ setup_gitconfig() {
   else
       info 'Setting Up .gitconfig'
   
-      user ' - What Is Your Git Autor Name?'
+      user ' - What Is Your Git Author Name?'
       read -r -e git_authorname
   
       user ' - What Is Your Git Author Email Address?'
@@ -77,23 +72,19 @@ setup_gitconfig() {
   fi
 }
 
-#install_git_submoules() {
-#  info 'Cloning & initialising git submodules'
-#  git submodule update --init --recursive --quiet
-#  success 'Done'
-#}
-
-# Define function to output usage guidance ...
+# Define a function to output usage details & help
 usage () {
-  echo -e " This application installs and configures the dotfiles from https://github.com/andy-crouch/dotfiles."
-  echo -e " \n Full details of how this application works and the command line options can be found in the above repository."
-  echo -e " \n Usage: dotfles <operation>"
+  echo -e " The Dotfiles script installs and manages the settings & configuration files in your ~/.dotfiles directory."
+  echo -e " \n Full details of how this script works and the command line options can be found at https://github.com/andy-crouch/dotfiles"
+  echo -e " \n Usage: dotfiles <operation>"
   echo -e "        dotfiles (-i --install)        - Installs and links the dotfiles to the local file system."
   echo -e "        dotfiles (-u --update)         - Updates the repository and any installed sub modules."
   echo -e "        dotfiles (-m --modules-update) - Updates installed sub modules only (not core repository files)."
   echo -e " \n"
 }
 
+# Define a function to map .symlink Dotfiles to their respective paths on the 
+# file system
 install_dotfiles () {
   backup_time_stamp=$(date +%d-%m-%Y:%H%M)
 
@@ -103,7 +94,7 @@ install_dotfiles () {
   #  target_path="$HOME/${source#$dotfiles_root/}"
     target_path="/home/andy/TestHome/${source#$dotfiles_root/}"
     target_dir=$(dirname "${target_path}")
-    file_name="$(basename ${source%.*})"
+    file_name="$(basename "${source%.*}")"
 
     dest="$target_dir/$file_name"
 	
@@ -159,34 +150,39 @@ install_dotfiles () {
   done
 }
 
+# Process run command
+if [ $# -lt 1 ] ; then
+    usage
+fi
+
 while [ "$1" != "" ]; do
-    case $1 in
-        -i | --install )           
-			setup_gitconfig
-			install_dotfiles
-			shift
-			echo -e ""
-			;;
-        -u | --update )    
-			setup_gitconfig
-			set_environment_appearance
-			shift
-			echo -e "Updating"
-			;;
-        -h | --help )           
-			shift
-			usage
-			;;
-        -m | --modules-update )           
-			shift
-			echo -e "Updating Sub Modules"
-			;;
-        * )                     
-			shift
-			usage
-			;;
-    esac
+  case $1 in
+    -i | --install )           
+      setup_gitconfig
+      install_dotfiles
+      shift
+      echo -e ""
+      ;;
+    -u | --update )    
+      shift
+      echo -e "Updating"
+      ;;
+    -h | --help )           
+      shift
+      usage
+      ;;
+    -m | --modules-update )           
+      shift
+      echo -e "Updating Sub Modules"
+      ;;
+    * )                     
+      shift
+      usage
+      ;;
+  esac
 done
+
+
 
 #install_git_submoules
 #install_dotfiles
@@ -194,4 +190,13 @@ done
 #echo -e '\n'
 #echo -e '  All installed!'
 #echo -e '\n'
+
+#install_git_submoules() {
+#  info 'Cloning & initialising git submodules'
+#  git submodule update --init --recursive --quiet
+#  success 'Done'
+#}
+
+#
+# - For Windows Vim, Copy the .dotfiles/Vim/ directory to /vimfiles and the .dotfiles/.vimrc to .vimrc both in the users root directory.
 

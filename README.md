@@ -8,11 +8,11 @@ The repository includes the ***dotfiles*** script, in the root directory, which 
 
 This is **my** repository and designed to be useful to me.  I have spent a number of years trying to tame the files within but I do not focus a lot of time on the code.  If you would find it useful then I have no issue with you forking it and using it to manage your dotfiles and configuration settings.  If you see something you want to change or fix then I am open to PR's. 
 
-## How it works .
+## How it works.
 
 The mechanism I have settled on is simple, symbolic links (symlinks).  Any file or directory that I want to manage across environments is added to the .dotfiles/ directory and has a **.symlink** extension added.  it doesn't matter if it is a file or a directory.  The files and directories are added as if the *.dotfiles/* directory was actually your */home* directory.  So for example *.bashrc* is stored at *.dotfiles/bashrc.symlink*.  If you are managing your i3 configuration which is found at in your home directory as *~/.i3/config* then you would add it as *.dotfiles/.i3.symlink/config*.  It's that simple.
 
-## Theme's, settings and configurations.
+## Themes, settings and configurations.
 
 Each theme, setting and configuration I manage via this repository is documented on the [wiki](https://github.com/andy-crouch/dotfiles/wiki).  Click a link below to find out more:
 
