@@ -56,7 +56,7 @@ link_files() {
 setup_gitconfig() {
   if test -e ~/.gitcredentials.config
   then
-      success '.gitconfig Credentials Initialised, Nothing To Do.'
+      success '.gitconfig credentials initialised, Nothing to do.'
   else
       info 'Setting Up .gitconfig'
   
@@ -68,7 +68,26 @@ setup_gitconfig() {
   
       sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g"  git/gitcredentials.template > ~/.gitcredentials.config
   
-      success  'Setting Up .gitconfig'
+      success  'Setting up .gitconfig'
+  fi
+}
+
+# Define a function to setup zsh.
+# The function will check that zsh is an installed shell, attempt to switch to it 
+# and if successful, run an unattended oh-my-zsh installation.
+setup_zsh() {
+  if [ -n "$(command -v zsh)" ]
+  then
+    info 'To attempt to configure zsh you will need to enter your sudo password. This is not stored.'
+    sudo chsh -s "$(command -v zsh)"
+    exit
+    curl -Lo install.sh https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh
+    sh install.sh --unattended
+    rm install.sh
+
+    success  'Zsh configured & Oh My Zsh installed.'
+  else
+    info 'zsh Is Not Installed, Set Up zsh Manually.'
   fi
 }
 
@@ -77,7 +96,7 @@ usage () {
   echo -e " The Dotfiles script installs and manages the settings & configuration files in your ~/.dotfiles directory."
   echo -e " \n Full details of how this script works and the command line options can be found at https://github.com/andy-crouch/dotfiles"
   echo -e " \n Usage: dotfiles <operation>"
-  echo -e "        dotfiles (-i --install)        - Installs and links the dotfiles to the local file system."
+  echo -e "        dotfiles (-i --install)        - Installs & links the dotfiles to the local file system (requires sudo)."
   echo -e "        dotfiles (-u --update)         - Updates the repository and any installed sub modules."
   echo -e "        dotfiles (-m --modules-update) - Updates installed sub modules only (not core repository files)."
   echo -e " \n"
@@ -160,7 +179,12 @@ if [ "$1" != "" ]
 then
   case $1 in
     -i | --install )           
+      #if [ "$EUID" -ne 0 ]
+      #  then echo "Unable To Install Dotfiles When Script Is Not Run As Sudo"
+      #  exit
+      #fi
       setup_gitconfig
+      setup_zsh
       install_dotfiles
       shift
       echo -e ""
