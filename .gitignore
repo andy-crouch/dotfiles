@@ -1,0 +1,2 @@
+# Ignore .vim/plugged
+vim.symlink/plugged
