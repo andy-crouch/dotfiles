@@ -24,7 +24,7 @@ while [ -h "$script_source" ]; do
   script_source="$(readlink "$script_source")"
   [[ $script_source != /* ]] && script_source="$script_dir/$script_source" 
 done
-bash_df_dir="$( cd -P "$( dirname "$script_source" )/bash" && pwd )"
+bash_df_dir="$( cd -P "$( dirname "$script_source" )/bash_config" && pwd )"
 
 # Search the .dotfiles/bash/ directory (2 levels deep) for . files to source.
 bash_source_files=$(find "${bash_df_dir}" -maxdepth 2 -iname '.*' -a ! -iname '.bash*' | sort)
