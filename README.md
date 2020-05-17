@@ -2,11 +2,11 @@
 
 # My dotfiles & configuration.
 
-This repository contains the various dotfiles and configuration settings that I use to power my *nix based environments.  I currently use [Manjaro i3 Community Edition ](http://www.dropwizard.io/1.0.2/docs/) across a range of laptops and Virtual Machines.  I also use Cygwin via the [Babun project](https://babun.github.io/) on Windows and occasionally WLS in Windows 10.
+This repository contains the various dotfiles and configuration settings that I use to power my *nix based environments.  I currently use [Manjaro i3 Community Edition ](https://manjaro.org/download/community/i3/) across a range of laptops and Virtual Machines.
 
-The repository includes the ***dotfiles*** script, in the root directory, which allows for the installation and maintenance of the files and settings.  The aim of the ***dotfiles*** script is to provide a convention based way in which to manage your files and settings without the need of a configuration file.  The script does not rely on any third party tool or framework to prevent reliance on depreciating code.  While I use a limited (and opinionated) set of tools, the convention based approach will work for any type of file you wish to add. 
+**Important Note - ** This repository previously had a custom script to handle the linking and management of files. I have now switched to using [GNU Stow](https://www.gnu.org/software/stow/) to manage the linking of the files in this repository. There are some helper scripts which are covered in subsequent sections for initialising git and copying theme files to the expected locations. If you have previously used this repository as a basis for managing your dotfiles then pleas update based on the new method.
 
-This is **my** repository and designed to be useful to me.  I have spent a number of years trying to tame the files within but I do not focus a lot of time on the code.  If you would find it useful then I have no issue with you forking it and using it to manage your dotfiles and configuration settings.  If you see something you want to change or fix then I am open to PR's. 
+** Minor Note - ** This repository is in a heavy period of development as I am simplifying and updating my configurations. If anything breaks for you then I apologise and if you want to contribute anything please do.
 
 ## How it works.
 
