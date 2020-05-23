@@ -8,8 +8,8 @@ set $mod Mod4
 # workspace_layout tabbed <stacking|tabbed>
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-new_window pixel 1
-new_float normal
+default_border pixel 1
+default_floating_border normal
 
 # Hide borders
 hide_edge_borders none
@@ -21,7 +21,7 @@ bindsym $mod+n border normal
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font xft:URWGothic-Book 10
+font xft:URWGothic-Book 11
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
@@ -37,6 +37,10 @@ bindsym $mod+d exec --no-startup-id dmenu_recency
 
 # launch categorized menu
 bindsym $mod+z exec --no-startup-id morc_menu
+
+# move focused workspace between monitors
+bindsym $mod+Ctrl+greater move workspace to output right
+bindsym $mod+Ctrl+less move workspace to output left
 
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
@@ -56,11 +60,10 @@ bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 
 # Start Applications
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
-#bindsym $mod+F2 exec palemoon
 bindsym $mod+F2 exec google-chrome-stable
-bindsym $mod+F3 exec pcmanfm
-# bindsym $mod+F3 exec ranger
-bindsym $mod+Shift+F3 exec gksu pcmanfm
+#bindsym $mod+F3 exec pcmanfm
+bindsym $mod+F3 exec ranger
+bindsym $mod+Shift+F3 exec pcmanfm_pkexec
 bindsym $mod+F5 exec terminal -e 'mocp'
 bindsym $mod+t exec --no-startup-id pkill compton
 bindsym $mod+Ctrl+t exec --no-startup-id compton -b
@@ -71,7 +74,7 @@ bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
 bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
-# focus_follows_mouse no
+focus_follows_mouse no
 
 # change focus
 bindsym $mod+j focus left
@@ -192,6 +195,7 @@ for_window [title="alsamixer"] floating enable border pixel 1
 for_window [class="calamares"] floating enable border normal
 for_window [class="Clipgrab"] floating enable
 for_window [title="File Transfer*"] floating enable
+for_window [class="fpakman"] floating enable
 for_window [class="Galculator"] floating enable border pixel 1
 for_window [class="GParted"] floating enable border normal
 for_window [title="i3_help"] floating enable sticky enable border normal
@@ -286,6 +290,13 @@ exec --no-startup-id start_conky_maia
 exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
+exec --no-startup-id dropbox
+exec --no-startup-id skypeforlinux
+exec --no-startup-id mailspring
+exec --no-startup-id minetime
+exec --no-startup-id slack
+exec --no-startup-id keepassxc
+exec --no-startup-id flameshot
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
@@ -334,22 +345,17 @@ bar {
 	strip_workspace_numbers yes
 
     colors {
-        background #2e3440
-        statusline #d9dade
-        separator  #2e3440
+        #background #222D31
+        background #0c0c0c
+        statusline #F9FAF9
+        separator  #454947
 
-	#                  border  backgrd text
-        focused_workspace  #2e3440 #2e3440 #d9dade
-        active_workspace   #2e3440 #2e3440 #d9dade
-        inactive_workspace #2e3440 #2e3440 #686b7c
-        binding_mode       #2e3440 #2e3440 #d9dade
-        urgent_workspace   #2e3440 #2e3440 #d9dade
-#	focused_workspace  #1f2030 #1f2030 #d9dade
-#        active_workspace   #1f2030 #1f2030 #d9dade
-#        inactive_workspace #1f2030 #1f2030 #686b7c
-#        binding_mode       #1f2030 #1f2030 #d9dade
-#        urgent_workspace   #1f2030 #1f2030 #d9dade
-
+#                      border  backgr. text
+        focused_workspace  #F9FAF9 #16a085 #292F34
+        active_workspace   #595B5B #353836 #FDF6E3
+        inactive_workspace #595B5B #222D31 #EEE8D5
+        binding_mode       #16a085 #2C2C2C #F9FAF9
+        urgent_workspace   #16a085 #FDF6E3 #E5201D
     }
 }
 
@@ -358,8 +364,7 @@ bindsym $mod+m bar mode toggle
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
-  #client.focused          #556064 #556064 #80FFF9 #FDF6E3
-  client.focused          #2e3440 #2e3440 #444444 #FDF6E3
+  client.focused          #556064 #556064 #80FFF9 #FDF6E3
   client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
   client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
   client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
@@ -372,8 +377,8 @@ bindsym $mod+m bar mode toggle
 #############################
 
 # Set inner/outer gaps
-gaps inner 6
-gaps outer -3
+gaps inner 14
+gaps outer -2
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
 # gaps inner|outer current|all set|plus|minus <px>
