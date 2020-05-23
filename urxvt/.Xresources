@@ -1,8 +1,3 @@
-
-
-!!Includes
-#include "/home/andy/.dotfiles/urxvt/.nord-urxvt-colors"
-
 Xft.dpi:       96
 Xft.antialias: true
 Xft.hinting:   true
@@ -19,55 +14,51 @@ XTerm*faceSize:          11
 XTerm*reverseVideo:      on
 XTerm*selectToClipboard: true
 
-!*background:                      #222D31
-!*foreground:                      #d8d8d8
-!*fading:                          8
-!*fadeColor:                       black
-!*cursorColor:                     #1ABB9B
+*background:                      #222D31
+*foreground:                      #d8d8d8
+*fading:                          8
+*fadeColor:                       black
+*cursorColor:                     #1ABB9B
 *pointerColorBackground:          #2B2C2B
 *pointerColorForeground:          #16A085
 
 !! black dark/light
-!*color0:                          #222D31
-!*color8:                          #585858
-!
-!!! red dark/light
-!*color1:                          #ab4642
-!*color9:                          #ab4642
-!
-!!! green dark/light
-!*color2:                          #7E807E
-!*color10:                         #8D8F8D
-!
-!!! yellow dark/light
-!*color3:                          #f7ca88
-!*color11:                         #f7ca88
-!
-!!! blue dark/light
-!*color4:                          #7cafc2
-!*color12:                         #7cafc2
-!
-!!! magenta dark/light
-!*color5:                          #ba8baf
-!*color13:                         #ba8baf
-!
-!!! cyan dark/light
-!*color6:                          #1ABB9B
-!*color14:                         #1ABB9B
-!
-!!! white dark/light
-!*color7:                          #d8d8d8
-!*color15:                         #f8f8f8
+*color0:                          #222D31
+*color8:                          #585858
 
-Xcursor.theme: xcursor-breeze
+!! red dark/light
+*color1:                          #ab4642
+*color9:                          #ab4642
+
+!! green dark/light
+*color2:                          #7E807E
+*color10:                         #8D8F8D
+
+!! yellow dark/light
+*color3:                          #f7ca88
+*color11:                         #f7ca88
+
+!! blue dark/light
+*color4:                          #7cafc2
+*color12:                         #7cafc2
+
+!! magenta dark/light
+*color5:                          #ba8baf
+*color13:                         #ba8baf
+
+!! cyan dark/light
+*color6:                          #1ABB9B
+*color14:                         #1ABB9B
+
+!! white dark/light
+*color7:                          #d8d8d8
+*color15:                         #f8f8f8
+
+Xcursor.theme: xcursor-breeze-snow
 Xcursor.size:                     0
 
-!URxvt.font:                       9x15,xft:TerminessTTFNerdFontMono
-!URxvt.font:     xft:Source Code Pro:size=10:antialias=true
-!URxvt.boldFont: xft:Source Code Pro:bold:size=10:antialias=true
-URxvt.font:     xft:Inconsolata\ Nerd\ Font\ Mono:size=11:antialias=true
-URxvt.boldFont: xft:Source Code Pro:bold:size=11:antialias=true
-
+#URxvt.font:                       9x15,xft:TerminessTTFNerdFontMono
+URxvt.font:                        xft:MesloLGS\ NF:pixelsize=12
 
 ! alternative font settings with 'terminus':
 ! URxvt.font:      -xos4-terminus-medium-r-normal--16-160-72-72-c-80-iso10646-1
