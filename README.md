@@ -4,7 +4,7 @@
 
 This repository contains the various .dotfiles and configuration settings that I use to configure my *nix based environments.  I currently use [Manjaro i3 Community Edition ](https://manjaro.org/download/community/i3/) across a range of laptops and Virtual Machines.
 
-**Important Note - ** *This repository previously had a custom script to handle the linking and management of files. I have now switched to using [GNU Stow](https://www.gnu.org/software/stow/) to manage the linking of the files in this repository. If you have previously used this repository as a basis for managing your .dotfiles then please update your code based on the new method.*
+***Important Note*** -  *This repository previously had a custom script to handle the linking and management of files. I have now switched to using [GNU Stow](https://www.gnu.org/software/stow/) to manage the linking of the files in this repository. If you have previously used this repository as a basis for managing your .dotfiles then please update your code based on the new method.*
 
 This repository is designed to be useful to me.  I have spent a number of years trying to tame the files within but I do not focus a lot of time on the code. My prime concern is being able to reconstruct a working, productive environment quickly. If you would find it useful then I have no issue with you forking it and using it to manage your *.dotfiles* and configuration settings.  
 
