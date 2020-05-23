@@ -13,3 +13,6 @@
 [submodule "vim/bundle/vim-ps1"]
 	path = vim/bundle/vim-ps1
 	url = https://github.com/PProvost/vim-ps1.git
+[submodule "zsh/.oh-my-zsh"]
+	path = zsh/.oh-my-zsh
+	url = https://github.com/ohmyzsh/ohmyzsh.git
