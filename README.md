@@ -53,7 +53,7 @@ This section is currently being updated to add an initialise script to automatic
 
 Check back soon.
 
-## Running the tests
+# Running the tests
 
 The ***test.sh*** script in the root of the .dofiles/ directory will use [shellchecker](https://github.com/koalaman/shellcheck) to catch issues with any scripts.  To run the script, run:
 
@@ -64,19 +64,25 @@ cd ~/.dotfiles
 
 Any errors or linting issues will be streamed to the console.
 
-## Contributing
+# Applications, Utilities & Themes
+
+* arandr - Used to switch between screen layouts when moving between multiple monitors. Each configuration is stored in the *~/.dotfiles/arandr* directory.
+* bash - Although I have switched permenantly to zsh for my terminal experience I have an old bash configuration available in the *~/.dotfiles/bash* directory.
+* zsh - Shell of choice and mixed with Oh My Zsh and the Powerlevel 10k theme. If you disable auto updating in Oh My Shell you should periodically pull latest in the *~/.dotfiles/zsh/.oh-my-zsh* directory. All zsh related configuration is stored in the *~.dotfiles/zsh* directory.
+
+# Contributing
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on the code of conduct, and the process for submitting pull requests.
 
-## Authors
+# Authors
 
 * **Andy Crouch** - [Email](mailto:email@amcrou.ch) | [Twitter](https://twitter.com/amcrouch) 
 
-## License
+# License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
-## Acknowledgements
+# Acknowledgements
 
 * Jess Frazelle [dotfiles](https://github.com/jessfraz/dotfiles) - Excellent reference scripts. Unashamedly stole her script testing script. I highly recommend you follow her on [twitter](https://twitter.com/jessfraz?lang=en). 
 
