@@ -1,16 +1,26 @@
-![image](dotfiles.png)
+![image](README_IMAGES/dotfiles.png)
 
-# My dotfiles & configuration.
+# My .dotfiles & *nix configuration. 
 
-This repository contains the various dotfiles and configuration settings that I use to power my *nix based environments.  I currently use [Manjaro i3 Community Edition ](https://manjaro.org/download/community/i3/) across a range of laptops and Virtual Machines.
+This repository contains the various .dotfiles and configuration settings that I use to configure my *nix based environments.  I currently use [Manjaro i3 Community Edition ](https://manjaro.org/download/community/i3/) across a range of laptops and Virtual Machines.
 
-**Important Note - ** This repository previously had a custom script to handle the linking and management of files. I have now switched to using [GNU Stow](https://www.gnu.org/software/stow/) to manage the linking of the files in this repository. There are some helper scripts which are covered in subsequent sections for initialising git and copying theme files to the expected locations. If you have previously used this repository as a basis for managing your dotfiles then pleas update based on the new method.
+**Important Note - ** This repository previously had a custom script to handle the linking and management of files. I have now switched to using [GNU Stow](https://www.gnu.org/software/stow/) to manage the linking of the files in this repository. If you have previously used this repository as a basis for managing your *.dotfiles* then please update your code based on the new method.
 
-** Minor Note - ** This repository is in a heavy period of development as I am simplifying and updating my configurations. If anything breaks for you then I apologise and if you want to contribute anything please do.
+This is ***my*** repository and designed to be useful to me.  I have spent a number of years trying to tame the files within but I do not focus a lot of time on the code.  If you would find it useful then I have no issue with you forking it and using it to manage your .dotfiles and configuration settings.  
+
+If you see something you want to change or fix then I am open to and encourage Pull Requests.
 
 ## How it works.
 
-The mechanism I have settled on is simple, symbolic links (symlinks).  Any file or directory that I want to manage across environments is added to the .dotfiles/ directory and has a **.symlink** extension added.  it doesn't matter if it is a file or a directory.  The files and directories are added as if the *.dotfiles/* directory was actually your */home* directory.  So for example *.bashrc* is stored at *.dotfiles/bashrc.symlink*.  If you are managing your i3 configuration which is found at in your home directory as *~/.i3/config* then you would add it as *.dotfiles/.i3.symlink/config*.  It's that simple.
+All .dotfiles for an application are stored in a top level directory within the *.dotfiles* repository, for example _bash/_ or _zsh/_. Any custom file configuration such as splitting aliases or functions out of your main bash configuration are stored in a sub-directory of the application directory. This directory is named _application_config_ for example _bash/bash_config_.
+
+![image](README_IMAGES/Config_Example.png)
+
+To restore the .dofiles for a particular application you can use stow and tell it which application to restore.
+
+```shell
+$ stow bash
+```
 
 ## Themes, settings and configurations.
 
