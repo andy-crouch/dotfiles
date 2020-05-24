@@ -41,6 +41,16 @@ This will download **my** dotfiles and settings.  If you decide to fork this rep
 
 ## Prerequisites
 
+### Gtk Theme Prerequisites
+
+I prefer Gtk applications within my environment. My chosen Gtk theme is [Matcha Dark Sea](https://github.com/vinceliuice/Matcha-gtk-theme) and my **i3** theme and other non Gtk configurations have been updated to blend in. 
+
+### Font Prerequisites
+
+I use [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts) throughout my **i3** and **zsh** setups and you will need to install them for my configurations to work correctly.
+
+### Shell Prerequisites
+
 I use [Zsh](https://www.zsh.org/) as my shell of choice. There is a basic bash setup included in the repository but I install Zsh as soon as I can on a machine. I find Zsh is more user friendly and productive than bash and [this](https://linuxhint.com/differences_between_bash_zsh/) article covers some of the benefits.
 
 I use [Oh My Zsh](https://ohmyz.sh/) which is "*an open source, community-driven framework for managing your zsh configuration.*"  The projects repository is a submodule to this project and will be installed on cloning.
