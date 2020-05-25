@@ -80,8 +80,9 @@ Any errors or linting issues will be streamed to the console.
 * bash - Although I have switched permenantly to zsh for my terminal experience I have an old bash configuration available in the *~/.dotfiles/bash* directory.
 * dmenu - A fast dynamic, text based, menu for X used as a launcher for i3. The configuration is in the *~/.dotfiles/dmenu* directory.
 * i3 - A tiling Window manager. The configuration for i3 is stored in the *~/.dotfiles/i3/* directory.
-* zsh - Shell of choice and mixed with Oh My Zsh and the Powerlevel 10k theme. If you disable auto updating in Oh My Shell you should periodically pull latest in the *~/.dotfiles/zsh/.oh-my-zsh* directory. All zsh related configuration is stored in the *~.dotfiles/zsh* directory.
 * urxvt - My preferred Terminal. The configuration files, including .Xresources, are stored in *~/.dotfiles/urxvt*.
+* vim - My editor of choice. I use Vim Plug as a plugin manager which simplifies their management. All configuration files are stored in the *~/.dotfiles/vim* directory.
+* zsh - Shell of choice and mixed with Oh My Zsh and the Powerlevel 10k theme. If you disable auto updating in Oh My Shell you should periodically pull latest in the *~/.dotfiles/zsh/.oh-my-zsh* directory. All zsh related configuration is stored in the *~.dotfiles/zsh* directory.
 
 # Configurations Of Note
 
