@@ -297,6 +297,8 @@ exec --no-startup-id minetime
 exec --no-startup-id slack
 exec --no-startup-id keepassxc
 exec --no-startup-id flameshot
+exec --no-startup-id blueberry
+exec --no-startup-id cronopete
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
