@@ -30,8 +30,9 @@ call plug#end()
 
 " ===================================
 
-"let g:material_theme_style = 'darker'
+let g:material_theme_style = 'darker'
 colorscheme material
+"syntax enable
 
 :let g:netrw_dirhistmax = 0
 
